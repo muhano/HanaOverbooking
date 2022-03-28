@@ -8,41 +8,38 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       org_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(50)
       },
       org_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(20)
       },
       merchant_name: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(25)
       },
       merchant_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(20)
       },
       terminal_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(50)
       },
       terminal_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(20)
       },
       cif: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(50)
       },
       account: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(20)
       },
       limit: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(20)
       },
       channel: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(20)
       },
       partners_id: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(20)
       },
       createdAt: {
         allowNull: false,

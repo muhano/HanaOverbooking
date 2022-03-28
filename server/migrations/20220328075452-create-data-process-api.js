@@ -9,31 +9,31 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       org_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(20)
       },
       merchant_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(20)
       },
       client_id: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(250)
       },
       client_secret: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(250)
       },
       public_key: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(250)
       },
       private_key: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(250)
       },
       host_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(100)
       },
       ip_address: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT(250)
       },
       service_name: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT(250)
       },
       createdAt: {
         allowNull: false,

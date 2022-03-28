@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   data_process_core.init({
-    id: DataTypes.INTEGER,
     org_name: DataTypes.STRING,
     org_id: DataTypes.INTEGER,
     merchant_name: DataTypes.INTEGER,
