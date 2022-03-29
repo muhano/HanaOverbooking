@@ -38,7 +38,7 @@ const editProcessApi = async (req, res, next) => {
                 org_id, merchant_id, client_id, client_secret, public_key, private_key, host_name, ip_address, service_name
             },
             {
-                where: {id:instanceId},
+                where: { id: instanceId },
                 returning: true
             }
         );
@@ -49,4 +49,23 @@ const editProcessApi = async (req, res, next) => {
     }
 };
 
-module.exports = { getProcessApi, createProcessApi, editProcessApi }
+const deleteProcessApi = async (req, res, next) => {
+    try {
+        const instanceId = req.params.id;
+
+        const findInstance = await data_process_api.findByPk(instanceId);
+        if (!findInstance) {
+            throw { name: "notFound" };
+        }
+
+        const deletedProcessApi = await data_process_api.destroy({
+            where: { id: instanceId },
+        });
+        
+        res.status(200).json({ message: `Data with Id ${findInstance.id} deleted` });
+    } catch (err) {
+        next(err);
+    }
+};
+
+module.exports = { getProcessApi, createProcessApi, editProcessApi, deleteProcessApi }
