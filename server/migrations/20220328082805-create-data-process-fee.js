@@ -61,6 +61,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('data_process_fees');
+    await queryInterface.dropTable('data_process_fee');
   }
 };

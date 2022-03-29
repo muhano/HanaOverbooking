@@ -36,10 +36,10 @@ module.exports = {
         type: Sequelize.INTEGER(20)
       },
       channel: {
-        type: Sequelize.STRING(20)
+        type: Sequelize.STRING(50)
       },
       partners_id: {
-        type: Sequelize.STRING(20)
+        type: Sequelize.STRING(50)
       },
       createdAt: {
         allowNull: false,
@@ -52,6 +52,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('data_process_cores');
+    await queryInterface.dropTable('data_process_core');
   }
 };
