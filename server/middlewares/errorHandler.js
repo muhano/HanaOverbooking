@@ -20,7 +20,7 @@ const errorHandler = (err, req, res, next) => {
     message = "Invalid token"
   } else if (err.name === "notFound") {
     statusCode = 404
-    message = "Item not found"
+    message = "Instance not found"
   }
 
   res.status(statusCode).json({ message });
