@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'data_process_fee',
+    tableName: 'data_process_fee'
   });
   return data_process_fee;
 };

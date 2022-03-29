@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'data_process_core',
+    tableName: 'data_process_core'
   });
   return data_process_core;
 };

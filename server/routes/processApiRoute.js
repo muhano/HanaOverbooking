@@ -1,9 +1,9 @@
 const router = require('express').Router()
+const processApiController = require('../controllers/processApiController')
 
 
-router.get('/processapis', (req, res) => {
-    res.send("data process apis");
-})
+router.get('/processapi', processApiController.getProcessApi)
+router.post('/processapi', processApiController.createProcessApi)
 
 
 
