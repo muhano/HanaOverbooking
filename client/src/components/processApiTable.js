@@ -1,6 +1,6 @@
 import { Container } from "react-bootstrap"
 
-function processApiTable() {
+function ProcessApiTable() {
     return (
         <Container>
             <h3>This table for data process api</h3>
@@ -8,4 +8,4 @@ function processApiTable() {
     )
 }
 
-export default processApiTable
+export default ProcessApiTable

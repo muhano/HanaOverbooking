@@ -1,6 +1,6 @@
 import { Container } from "react-bootstrap"
 
-function processCoreTable() {
+function ProcessCoreTable() {
     return (
         <Container>
             <h3>This table for data process core</h3>
@@ -8,4 +8,4 @@ function processCoreTable() {
     )
 }
 
-export default processCoreTable
+export default ProcessCoreTable

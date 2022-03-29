@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard"
-import ProcessApiTable from "./components/processApiTable"
-import ProcessCoreTable from "./components/processCoreTable"
-import ProcessFeeTable from "./components/processFeeTable"
+import ProcessApiTable from "./components/ProcessApiTable"
+import ProcessCoreTable from "./components/ProcessCoreTable"
+import ProcessFeeTable from "./components/ProcessFeeTable"
 
 function App() {
     return (

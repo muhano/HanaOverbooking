@@ -1,6 +1,6 @@
 import {Container} from "react-bootstrap"
 
-function processFeetable() {
+function ProcessFeetable() {
     return(
         <Container>
             <h3>this is data process fee table</h3>
@@ -8,4 +8,4 @@ function processFeetable() {
     )
 }
 
-export default processFeetable
+export default ProcessFeetable
