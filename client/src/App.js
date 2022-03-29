@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/Dashboard"
+import ProcessApiTable from "./components/processApiTable"
+import ProcessCoreTable from "./components/processCoreTable"
+import ProcessFeeTable from "./components/processFeeTable"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Routes>
+            <Route path="/" element={<Dashboard />}>
+                <Route index element={<ProcessApiTable />} />
+                <Route path="processcoretable" element={<ProcessCoreTable />} />
+                <Route path="processfeetable" element={<ProcessFeeTable />} />
+            </Route>
+        </Routes>
+    )
 }
 
 export default App;
