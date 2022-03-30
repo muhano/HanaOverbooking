@@ -15,7 +15,7 @@ function ProcessApiTable() {
           `http://localhost:3000/processapi`
         );
 
-        console.log(response)
+        
         setDataList(response.data)
         setLoading(false);
 
