@@ -4,15 +4,17 @@ import ProcessApiTable from "./components/ProcessApiTable"
 import ProcessCoreTable from "./components/ProcessCoreTable"
 import ProcessFeeTable from "./components/ProcessFeeTable"
 import ProcessApiForm from "./components/ProcessApiForm"
+import ProcessApiEdit from "./components/ProcessApiEdit";
 
 function App() {
     return (
         <Routes>
             <Route path="/" element={<Dashboard />}>
                 <Route index element={<ProcessApiTable />} />
-                <Route path="processcoretable" element={<ProcessCoreTable />} />
-                <Route path="processfeetable" element={<ProcessFeeTable />} />
-                <Route path="processapitable/create" element={<ProcessApiForm />} />
+                <Route path="processcore" element={<ProcessCoreTable />} />
+                <Route path="processfee" element={<ProcessFeeTable />} />
+                <Route path="processapi/create" element={<ProcessApiForm />} />
+                <Route path="processapi/edit/:id" element={<ProcessApiEdit />} />
             </Route>
         </Routes>
     )

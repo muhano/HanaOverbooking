@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Container, Table, Button } from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 function ProcessApiTable() {
+  let navigate = useNavigate();
   const [dataList, setDataList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
@@ -15,7 +16,7 @@ function ProcessApiTable() {
           `http://localhost:3000/processapi`
         );
 
-        
+
         setDataList(response.data)
         setLoading(false);
 
@@ -87,7 +88,13 @@ function ProcessApiTable() {
               <td>{data.created_at}</td>
               <td>{data.updated_at}</td>
               <td className="w-100">
-                <Button className="me-2" variant="success">Edit</Button>
+                <Button
+                  onClick={() => navigate(`processapi/edit/${data.id}`)}
+                  className="me-2"
+                  variant="success"
+                >
+                  Edit
+                </Button>
                 <Button variant="danger">Delete</Button>
               </td>
             </tr>
