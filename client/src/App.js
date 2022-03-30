@@ -5,11 +5,18 @@ import ProcessCoreTable from "./components/ProcessCoreTable"
 import ProcessFeeTable from "./components/ProcessFeeTable"
 import ProcessApiForm from "./components/ProcessApiForm"
 import ProcessApiEdit from "./components/ProcessApiEdit";
+import Login from "./pages/Login"
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
     return (
         <Routes>
-            <Route path="/" element={<Dashboard />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={
+                <ProtectedRoute>
+                    <Dashboard />
+                </ProtectedRoute>
+            }>
                 <Route index element={<ProcessApiTable />} />
                 <Route path="processcore" element={<ProcessCoreTable />} />
                 <Route path="processfee" element={<ProcessFeeTable />} />

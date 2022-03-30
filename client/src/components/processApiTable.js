@@ -62,11 +62,8 @@ function ProcessApiTable() {
   return (
     <Container className="mt-3">
       <h5>Data Process API</h5>
-      <Link to="processapitable/create">
+      <Link to="processapi/create">
         <Button variant="primary">Create Process</Button>
-        {/* <button type="button" className="btn btn-success mt-3">
-          Create Item
-        </button> */}
       </Link>
       <Table striped bordered hover responsive className="mt-3">
         <thead>
