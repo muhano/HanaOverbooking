@@ -66,6 +66,8 @@ function ProcessApiTable() {
             <th>host_name</th>
             <th>ip_address</th>
             <th>service_name</th>
+            <th>created_at</th>
+            <th>updated_at</th>
             <th>action</th>
           </tr>
         </thead>
@@ -82,7 +84,9 @@ function ProcessApiTable() {
               <td>{data.host_name}</td>
               <td>{data.ip_address}</td>
               <td>{data.service_name}</td>
-              <td>
+              <td>{data.created_at}</td>
+              <td>{data.updated_at}</td>
+              <td className="w-100">
                 <Button className="me-2" variant="success">Edit</Button>
                 <Button variant="danger">Delete</Button>
               </td>
