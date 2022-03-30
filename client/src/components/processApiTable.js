@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Container, Table, Button, Row, Col } from "react-bootstrap"
+import { Container, Table, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
 function ProcessApiTable() {
@@ -47,7 +47,7 @@ function ProcessApiTable() {
   return (
     <Container className="mt-3">
       <h5>Data Process API</h5>
-      <Link to="createitem">
+      <Link to="processapitable/create">
         <Button variant="primary">Create Process</Button>
         {/* <button type="button" className="btn btn-success mt-3">
           Create Item
