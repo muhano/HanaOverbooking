@@ -16,10 +16,8 @@ function ProcessApiTable() {
           `http://localhost:3000/processapi`
         );
 
-
         setDataList(response.data)
         setLoading(false);
-
       } catch (err) {
         console.log(err);
         setError(err);
@@ -28,6 +26,22 @@ function ProcessApiTable() {
     }
     fetchData();
   }, []);
+
+  const handleDeleteData = async (id) => {
+    try {
+      const response = await axios({
+        method: 'delete',
+        url:`http://localhost:3000/processapi/${id}`
+      });
+      if (response.status === 200) {
+        console.log(`success delete data with id ${id}`);
+        const newList = dataList.filter(data => data.id !== id)
+        setDataList(newList)
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   if (loading) {
     return (
@@ -95,7 +109,10 @@ function ProcessApiTable() {
                 >
                   Edit
                 </Button>
-                <Button variant="danger">Delete</Button>
+                <Button 
+                onClick={() => handleDeleteData(data.id)}
+                variant="danger"
+                >Delete</Button>
               </td>
             </tr>
           ))}
