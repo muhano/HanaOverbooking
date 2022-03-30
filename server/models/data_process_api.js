@@ -26,7 +26,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'data_process_api',
-    tableName: 'data_process_api'
+    tableName: 'data_process_api',
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
   });
   return data_process_api;
 };
