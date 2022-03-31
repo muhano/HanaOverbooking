@@ -1,9 +1,235 @@
-import {Container} from "react-bootstrap"
+import { Container, Form, Button } from "react-bootstrap"
+import { useState } from "react"
+import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 function ProcessFeeForm() {
+    let navigate = useNavigate()
+    const [dataForm, setDataForm] = useState({
+        reff_num: "", 
+        merchant_id: "", 
+        merchant_name: "", 
+        channel: "", 
+        bank_reff_num: "", 
+        transaction_time: "", 
+        transaction_type: "", 
+        amount: "", 
+        fee: "", 
+        service_name: "", 
+        remarks: "", 
+        response_code: "", 
+        transaction_status: "", 
+        transaction_desc: ""
+    });
+    const [error, setError] = useState();
+
+    const handleFormInput = (e) => {
+        const value = e.target.value;
+        const field = e.target.name;
+        setDataForm({
+            ...dataForm,
+            [field]: value,
+        });
+    };
+
+    const handleAddData = async (e) => {
+        e.preventDefault();
+        try {
+
+            const response = await axios({
+                method: 'post',
+                url: 'http://localhost:3000/processfee',
+                headers: { access_token: localStorage.getItem("access_token") },
+                data: dataForm
+            });
+
+            setError()
+            console.log("success add data");
+            if (response.status === 201) {
+                navigate("/processfee");
+            }
+        } catch (err) {
+            console.log(err);
+            setError(err.response.data.message);
+        }
+    };
+
     return (
         <Container>
-            <h3>this is data process fee form</h3>
+            <h5 className="mt-3">Create New Data Process Fee</h5>
+            <Form onSubmit={handleAddData} className="mt-3">
+                <Form.Group className="mb-3">
+                    <Form.Label>reff_num</Form.Label>
+                    <Form.Control
+                        name="reff_num"
+                        value={dataForm.reff_num}
+                        type="number"
+                        onChange={handleFormInput}
+                        placeholder=""
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>merchant_id</Form.Label>
+                    <Form.Control
+                        name="merchant_id"
+                        value={dataForm.merchant_id}
+                        onChange={handleFormInput}
+                        type="number"
+                        placeholder=""
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>merchant_name</Form.Label>
+                    <Form.Control
+                        name="merchant_name"
+                        value={dataForm.merchant_name}
+                        onChange={handleFormInput}
+                        type="number"
+                        placeholder=""
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>channel</Form.Label>
+                    <Form.Control
+                        name="channel"
+                        value={dataForm.channel}
+                        onChange={handleFormInput}
+                        maxLength={50}
+                        type="text"
+                        placeholder=""
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>bank_reff_num</Form.Label>
+                    <Form.Control
+                        name="bank_reff_num"
+                        value={dataForm.bank_reff_num}
+                        onChange={handleFormInput}
+                        type="number"
+                        placeholder=""
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>transaction_time</Form.Label>
+                    <Form.Control
+                        name="transaction_time"
+                        value={dataForm.transaction_time}
+                        onChange={handleFormInput}
+                        maxLength={250}
+                        type="text"
+                        placeholder=""
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>transaction_type</Form.Label>
+                    <Form.Control
+                        name="transaction_type"
+                        value={dataForm.transaction_type}
+                        onChange={handleFormInput}
+                        maxLength={250}
+                        type="text"
+                        placeholder=""
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>amount</Form.Label>
+                    <Form.Control
+                        name="amount"
+                        value={dataForm.amount}
+                        onChange={handleFormInput}
+                        maxLength={250}
+                        type="text"
+                        placeholder=""
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>fee</Form.Label>
+                    <Form.Control
+                        name="fee"
+                        value={dataForm.fee}
+                        onChange={handleFormInput}
+                        type="number"
+                        placeholder=""
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>service_name</Form.Label>
+                    <Form.Control
+                        name="service_name"
+                        value={dataForm.service_name}
+                        onChange={handleFormInput}
+                        maxLength={250}
+                        type="text"
+                        placeholder=""
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>remarks</Form.Label>
+                    <Form.Control
+                        name="remarks"
+                        value={dataForm.remarks}
+                        onChange={handleFormInput}
+                        maxLength={250}
+                        type="text"
+                        placeholder=""
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>response_code</Form.Label>
+                    <Form.Control
+                        name="response_code"
+                        value={dataForm.response_code}
+                        onChange={handleFormInput}
+                        type="number"
+                        placeholder=""
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>transaction_status</Form.Label>
+                    <Form.Control
+                        name="transaction_status"
+                        value={dataForm.transaction_status}
+                        onChange={handleFormInput}
+                        maxLength={100}
+                        type="text"
+                        placeholder=""
+                    />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>transaction_desc</Form.Label>
+                    <Form.Control
+                        name="transaction_desc"
+                        value={dataForm.transaction_desc}
+                        onChange={handleFormInput}
+                        maxLength={100}
+                        type="text"
+                        placeholder=""
+                    />
+                </Form.Group>
+
+                <Button className="mb-5" variant="primary" type="submit">
+                    Submit
+                </Button>
+
+                {error && (
+                    <h6 className="mt-3" style={{ color: 'red' }}>
+                        {error}
+                    </h6>
+                )}
+            </Form>
         </Container>
     )
 }
