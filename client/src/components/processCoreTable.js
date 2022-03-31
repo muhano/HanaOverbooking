@@ -1,10 +1,11 @@
 import { Container, Table, Button } from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
 import axios from 'axios'
 import moment from 'moment';
 
 function ProcessCoreTable() {
+    const navigate = useNavigate()
     const [dataList, setDataList] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState();
@@ -15,7 +16,7 @@ function ProcessCoreTable() {
                 const response = await axios.get(
                     `http://localhost:3000/processcore`, {
                     headers: { access_token: localStorage.getItem("access_token") }
-                    }
+                }
                 );
 
                 setDataList(response.data)
@@ -28,6 +29,23 @@ function ProcessCoreTable() {
         }
         fetchData();
     }, []);
+
+    const handleDeleteData = async (id) => {
+        try {
+            const response = await axios({
+                method: 'delete',
+                url: `http://localhost:3000/processcore/${id}`,
+                headers: { access_token: localStorage.getItem("access_token") }
+            });
+            if (response.status === 200) {
+                console.log(`success delete data with id ${id}`);
+                const newList = dataList.filter(data => data.id !== id)
+                setDataList(newList)
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     const convertDate = (value) => {
         return moment(value).format('D-MM-YYYY, HH:mm:ss');
@@ -59,6 +77,7 @@ function ProcessCoreTable() {
                 <thead>
                     <tr>
                         <th>No. </th>
+                        <th>action</th>
                         <th>id</th>
                         <th>org_name</th>
                         <th>org_id</th>
@@ -73,13 +92,25 @@ function ProcessCoreTable() {
                         <th>partners_id</th>
                         <th>created_at</th>
                         <th>updated_at</th>
-                        <th>action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {dataList.map((data, index) => (
                         <tr key={data.id}>
                             <th>{index + 1}</th>
+                            <td className="w-100">
+                                <Button
+                                    onClick={() => navigate(`edit/${data.id}`)}
+                                    className="me-2"
+                                    variant="success"
+                                >
+                                    Edit
+                                </Button>
+                                <Button
+                                    onClick={() => handleDeleteData(data.id)}
+                                    variant="danger"
+                                >Delete</Button>
+                            </td>
                             <td>{data.id}</td>
                             <td>{data.org_name}</td>
                             <td>{data.org_id}</td>
@@ -94,19 +125,7 @@ function ProcessCoreTable() {
                             <td>{data.partners_id}</td>
                             <td>{convertDate(data.created_at)}</td>
                             <td>{convertDate(data.updated_at)}</td>
-                            <td className="w-100">
-                                <Button
-                                    // onClick={() => navigate(`processapi/edit/${data.id}`)}
-                                    className="me-2"
-                                    variant="success"
-                                >
-                                    Edit
-                                </Button>
-                                <Button
-                                    // onClick={() => handleDeleteData(data.id)}
-                                    variant="danger"
-                                >Delete</Button>
-                            </td>
+
                         </tr>
                     ))}
                 </tbody>

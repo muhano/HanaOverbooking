@@ -29,7 +29,6 @@ function Login() {
                 data: loginForm
             });
             setLoginError()
-            console.log(response, "<--------");
             localStorage.setItem('access_token', response.data.access_token)
             if (response.status === 200) {
                 navigate('/')

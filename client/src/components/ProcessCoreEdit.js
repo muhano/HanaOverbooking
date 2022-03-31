@@ -1,10 +1,11 @@
+import { useEffect, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap"
-import { useState } from "react"
-import axios from 'axios'
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom"
+import axios from "axios";
 
-function ProcessCoreForm() {
-    let navigate = useNavigate()
+function ProcessCoreEdit() {
+    const navigate = useNavigate()
+    const { id } = useParams();
     const [dataForm, setDataForm] = useState({
         org_name: "",
         org_id: "",
@@ -18,7 +19,38 @@ function ProcessCoreForm() {
         channel: "",
         partners_id: ""
     });
-    const [error, setError] = useState();
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await axios.get(
+                    `http://localhost:3000/processcore/${id}`, {
+                    headers: { access_token: localStorage.getItem("access_token") }
+                }
+                );
+
+                let result = response.data
+                setDataForm({
+                    ...dataForm,
+                    org_name: result.org_name,
+                    org_id: result.org_id,
+                    merchant_name: result.merchant_name,
+                    merchant_id: result.merchant_id,
+                    terminal_name: result.terminal_name,
+                    terminal_id: result.terminal_id,
+                    cif: result.cif,
+                    account: result.account,
+                    limit: result.limit,
+                    channel: result.channel,
+                    partners_id: result.partners_id
+                })
+
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        fetchData();
+    }, []);
 
     const handleFormInput = (e) => {
         const value = e.target.value;
@@ -29,32 +61,33 @@ function ProcessCoreForm() {
         });
     };
 
-    const handleAddData = async (e) => {
+    const handleEditData = async (e) => {
         e.preventDefault();
         try {
-
             const response = await axios({
-                method: 'post',
-                url: 'http://localhost:3000/processcore',
+                method: 'put',
+                url: `http://localhost:3000/processcore/${id}`,
                 headers: { access_token: localStorage.getItem("access_token") },
                 data: dataForm
             });
 
-            setError()
-            console.log("success add data");
-            if (response.status === 201) {
+            console.log(`success edit data with id ${id}`);
+
+            if (response.status === 200) {
                 navigate("/processcore");
             }
         } catch (err) {
             console.log(err);
-            setError(err.response.data.message);
         }
     };
 
     return (
         <Container>
-            <h5 className="mt-3">Create New Data Process Core</h5>
-            <Form onSubmit={handleAddData} className="mt-3">
+            <h5 className="mt-3">Edit Data Process Core with Id {id}</h5>
+            <Form
+                onSubmit={handleEditData} 
+                className="mt-3"
+            >
                 <Form.Group className="mb-3">
                     <Form.Label>org_name</Form.Label>
                     <Form.Control
@@ -184,14 +217,14 @@ function ProcessCoreForm() {
                     Submit
                 </Button>
 
-                {error && (
+                {/* {error && (
                     <h6 className="mt-3" style={{ color: 'red' }}>
                         {error}
                     </h6>
-                )}
+                )} */}
             </Form>
         </Container>
     )
 }
 
-export default ProcessCoreForm
+export default ProcessCoreEdit

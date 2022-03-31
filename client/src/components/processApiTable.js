@@ -34,7 +34,8 @@ function ProcessApiTable() {
     try {
       const response = await axios({
         method: 'delete',
-        url:`http://localhost:3000/processapi/${id}`
+        url:`http://localhost:3000/processapi/${id}`,
+        headers: { access_token: localStorage.getItem("access_token") }
       });
       if (response.status === 200) {
         console.log(`success delete data with id ${id}`);
@@ -69,13 +70,14 @@ function ProcessApiTable() {
   return (
     <Container className="mt-3">
       <h5>Data Process API</h5>
-      <Link to="processcore/create">
+      <Link to="processapi/create">
         <Button variant="primary">Create Process</Button>
       </Link>
       <Table striped bordered hover responsive className="mt-3">
         <thead>
           <tr>
             <th>No. </th>
+            <th>action</th>
             <th>org_id</th>
             <th>merchant_id</th>
             <th>client_id</th>
@@ -87,24 +89,13 @@ function ProcessApiTable() {
             <th>service_name</th>
             <th>created_at</th>
             <th>updated_at</th>
-            <th>action</th>
+            
           </tr>
         </thead>
         <tbody>
           {dataList.map((data, index) => (
             <tr key={data.id}>
               <th>{index + 1}</th>
-              <td>{data.org_id}</td>
-              <td>{data.merchant_id}</td>
-              <td>{data.client_id}</td>
-              <td>{data.client_secret}</td>
-              <td>{data.public_key}</td>
-              <td>{data.private_key}</td>
-              <td>{data.host_name}</td>
-              <td>{data.ip_address}</td>
-              <td>{data.service_name}</td>
-              <td>{convertDate(data.created_at)}</td>
-              <td>{convertDate(data.updated_at)}</td>
               <td className="w-100">
                 <Button
                   onClick={() => navigate(`processapi/edit/${data.id}`)}
@@ -118,6 +109,18 @@ function ProcessApiTable() {
                 variant="danger"
                 >Delete</Button>
               </td>
+              <td>{data.org_id}</td>
+              <td>{data.merchant_id}</td>
+              <td>{data.client_id}</td>
+              <td>{data.client_secret}</td>
+              <td>{data.public_key}</td>
+              <td>{data.private_key}</td>
+              <td>{data.host_name}</td>
+              <td>{data.ip_address}</td>
+              <td>{data.service_name}</td>
+              <td>{convertDate(data.created_at)}</td>
+              <td>{convertDate(data.updated_at)}</td>
+              
             </tr>
           ))}
         </tbody>

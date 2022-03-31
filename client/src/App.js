@@ -8,6 +8,7 @@ import ProcessApiEdit from "./components/ProcessApiEdit";
 import Login from "./pages/Login"
 import ProtectedRoute from "./routes/ProtectedRoute";
 import ProcessCoreForm from "./components/ProcessCoreForm";
+import ProcessCoreEdit from "./components/ProcessCoreEdit"
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                 <Route path="processapi/create" element={<ProcessApiForm />} />
                 <Route path="processapi/edit/:id" element={<ProcessApiEdit />} />
                 <Route path="processcore/create" element={<ProcessCoreForm />} />
+                <Route path="processcore/edit/:id" element={<ProcessCoreEdit />} />
             </Route>
         </Routes>
     )
