@@ -3,8 +3,11 @@ import moment from 'moment';
 import { useEffect, useState } from "react";
 import { Container, Table, Button } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 function ProcessApiTable() {
+  const MySwal = withReactContent(Swal)
   let navigate = useNavigate();
   const [dataList, setDataList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,8 +18,8 @@ function ProcessApiTable() {
       try {
         const response = await axios.get(
           `http://localhost:3000/processapi`, {
-            headers: {access_token : localStorage.getItem("access_token")}
-          }
+          headers: { access_token: localStorage.getItem("access_token") }
+        }
         );
 
         setDataList(response.data)
@@ -32,16 +35,51 @@ function ProcessApiTable() {
 
   const handleDeleteData = async (id) => {
     try {
-      const response = await axios({
-        method: 'delete',
-        url:`http://localhost:3000/processapi/${id}`,
-        headers: { access_token: localStorage.getItem("access_token") }
-      });
-      if (response.status === 200) {
-        console.log(`success delete data with id ${id}`);
-        const newList = dataList.filter(data => data.id !== id)
-        setDataList(newList)
-      }
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+
+          try {
+            const response = await axios({
+              method: 'delete',
+              url: `http://localhost:3000/processapi/${id}`,
+              headers: { access_token: localStorage.getItem("access_token") }
+            });
+            if (response.status === 200) {
+              console.log(`success delete data with id ${id}`);
+              const newList = dataList.filter(data => data.id !== id)
+              setDataList(newList)
+            }
+
+            Swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            )
+
+          } catch (err) {
+            console.log(err);
+          }
+        }
+      })
+
+      // const response = await axios({
+      //   method: 'delete',
+      //   url:`http://localhost:3000/processapi/${id}`,
+      //   headers: { access_token: localStorage.getItem("access_token") }
+      // });
+      // if (response.status === 200) {
+      //   console.log(`success delete data with id ${id}`);
+      //   const newList = dataList.filter(data => data.id !== id)
+      //   setDataList(newList)
+      // }
     } catch (err) {
       console.log(err);
     }
@@ -89,7 +127,7 @@ function ProcessApiTable() {
             <th>service_name</th>
             <th>created_at</th>
             <th>updated_at</th>
-            
+
           </tr>
         </thead>
         <tbody>
@@ -104,9 +142,9 @@ function ProcessApiTable() {
                 >
                   Edit
                 </Button>
-                <Button 
-                onClick={() => handleDeleteData(data.id)}
-                variant="danger"
+                <Button
+                  onClick={() => handleDeleteData(data.id)}
+                  variant="danger"
                 >Delete</Button>
               </td>
               <td>{data.org_id}</td>
@@ -120,7 +158,7 @@ function ProcessApiTable() {
               <td>{data.service_name}</td>
               <td>{convertDate(data.created_at)}</td>
               <td>{convertDate(data.updated_at)}</td>
-              
+
             </tr>
           ))}
         </tbody>
