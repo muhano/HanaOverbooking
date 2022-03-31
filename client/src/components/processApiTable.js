@@ -45,9 +45,14 @@ function ProcessApiTable() {
     }
   }
 
+  const convertDate = (value) => {
+    return value.toLocaleString();
+    // return typeof value
+  }
+
   if (loading) {
     return (
-      <Container className="mt3">
+      <Container className="mt-3">
         <h2>Loading...</h2>
       </Container>
     )
@@ -55,7 +60,7 @@ function ProcessApiTable() {
 
   if (error) {
     return (
-      <Container className="mt3">
+      <Container className="mt-3">
         <h2>{error.message}</h2>
       </Container>
     )
@@ -98,7 +103,7 @@ function ProcessApiTable() {
               <td>{data.host_name}</td>
               <td>{data.ip_address}</td>
               <td>{data.service_name}</td>
-              <td>{data.created_at}</td>
+              <td>{convertDate(data.created_at)}</td>
               <td>{data.updated_at}</td>
               <td className="w-100">
                 <Button
