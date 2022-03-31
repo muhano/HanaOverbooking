@@ -103,7 +103,7 @@ function ProcessFeetable() {
                             <th>{index + 1}</th>
                             <td className="w-100">
                                 <Button
-                                    onClick={() => navigate(`processapi/edit/${data.id}`)}
+                                    onClick={() => navigate(`edit/${data.id}`)}
                                     className="me-2"
                                     variant="success"
                                 >
