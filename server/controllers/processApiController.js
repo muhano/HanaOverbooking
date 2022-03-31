@@ -40,7 +40,6 @@ const findProcessApi = async (req, res, next) => {
 const editProcessApi = async (req, res, next) => {
     try {
         const instanceId = req.params.id
-        // console.log(id, '<-----------');
         const { org_id, merchant_id, client_id, client_secret, public_key, private_key, host_name, ip_address, service_name } = req.body;
 
         const findInstance = await data_process_api.findByPk(instanceId);

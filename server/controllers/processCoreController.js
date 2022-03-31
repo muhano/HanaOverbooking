@@ -9,6 +9,21 @@ const getProcessCore = async (req, res, next) => {
     }
 };
 
+const findProcessCore = async (req, res, next) => {
+    try {
+        const instanceId = req.params.id;
+
+        const response = await data_process_core.findByPk(instanceId);
+        if (!response) {
+            throw { name: "notFound" };
+        }
+        res.status(200).json(response);
+    } catch (err) {
+        console.log(err);
+        next(err);
+    }
+};
+
 const createProcessCore = async (req, res, next) => {
     try {
         const { org_name, org_id, merchant_name, merchant_id, terminal_name, terminal_id, cif, account, limit, channel, partners_id } = req.body;
@@ -68,4 +83,4 @@ const deleteProcessCore = async (req, res, next) => {
     }
 };
 
-module.exports = { getProcessCore, createProcessCore, editProcessCore, deleteProcessCore }
+module.exports = { getProcessCore, createProcessCore, editProcessCore, deleteProcessCore, findProcessCore }
