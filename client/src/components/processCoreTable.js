@@ -51,8 +51,8 @@ function ProcessCoreTable() {
 
     return (
         <Container className="mt-3">
-            <h5>Data Process API</h5>
-            <Link to="processapi/create">
+            <h5>Data Process Core</h5>
+            <Link to="create">
                 <Button variant="primary">Create Process</Button>
             </Link>
             <Table striped bordered hover responsive className="mt-3">
