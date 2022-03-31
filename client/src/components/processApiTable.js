@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from 'moment';
 import { useEffect, useState } from "react";
 import { Container, Table, Button } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
@@ -46,7 +47,8 @@ function ProcessApiTable() {
   }
 
   const convertDate = (value) => {
-    return value.toLocaleString();
+    return moment(value).format('D-MM-YYYY, HH:mm:ss');
+    // return value.toLocaleString();
     // return typeof value
   }
 
@@ -104,7 +106,7 @@ function ProcessApiTable() {
               <td>{data.ip_address}</td>
               <td>{data.service_name}</td>
               <td>{convertDate(data.created_at)}</td>
-              <td>{data.updated_at}</td>
+              <td>{convertDate(data.updated_at)}</td>
               <td className="w-100">
                 <Button
                   onClick={() => navigate(`processapi/edit/${data.id}`)}
