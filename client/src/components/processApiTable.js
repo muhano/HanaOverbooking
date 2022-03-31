@@ -23,7 +23,7 @@ function ProcessApiTable() {
         setLoading(false);
       } catch (err) {
         console.log(err);
-        setError(err);
+        setError(err.response.data.message);
         setLoading(false)
       }
     }
@@ -48,8 +48,6 @@ function ProcessApiTable() {
 
   const convertDate = (value) => {
     return moment(value).format('D-MM-YYYY, HH:mm:ss');
-    // return value.toLocaleString();
-    // return typeof value
   }
 
   if (loading) {
@@ -63,7 +61,7 @@ function ProcessApiTable() {
   if (error) {
     return (
       <Container className="mt-3">
-        <h2>{error.message}</h2>
+        <h2>Error: {error}</h2>
       </Container>
     )
   }
