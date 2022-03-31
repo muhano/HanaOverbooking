@@ -23,7 +23,9 @@ function ProcessApiEdit() {
         async function fetchData() {
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/processapi/${id}`
+                    `http://localhost:3000/processapi/${id}`,{
+                        headers: {access_token : localStorage.getItem("access_token")}
+                    }
                 );
 
                 let result = response.data
@@ -62,6 +64,7 @@ function ProcessApiEdit() {
             const response = await axios({
                 method: 'put',
                 url: `http://localhost:3000/processapi/${id}`,
+                headers: {access_token : localStorage.getItem("access_token")},
                 data: dataForm
             });
 

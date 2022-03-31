@@ -13,7 +13,9 @@ function ProcessApiTable() {
     async function fetchData() {
       try {
         const response = await axios.get(
-          `http://localhost:3000/processapi`
+          `http://localhost:3000/processapi`, {
+            headers: {access_token : localStorage.getItem("access_token")}
+          }
         );
 
         setDataList(response.data)

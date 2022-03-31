@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 });
 
 router.use(user)
-// router.use(userAuthentication)
+router.use(userAuthentication)
 router.use(processApi)
 router.use(processCore)
 

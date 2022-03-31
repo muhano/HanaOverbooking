@@ -1,12 +1,15 @@
 import "../styles/Login.css";
 import { useState } from "react"
 import axios from "axios"
+import {useNavigate} from "react-router-dom"
 
 function Login() {
+    let navigate = useNavigate()
     const [loginForm, setLoginForm] = useState({
         email: "",
         password: ""
     })
+    const [loginError, setLoginError] = useState();
 
     const handleFormInput = (e) => {
         const value = e.target.value
@@ -25,9 +28,15 @@ function Login() {
                 url: 'http://localhost:3000/user/login',
                 data: loginForm
             });
+            setLoginError()
             console.log(response, "<--------");
+            localStorage.setItem('access_token', response.data.access_token)
+            if (response.status === 200) {
+                navigate('/')
+            }
         } catch (err) {
             console.log(err);
+            setLoginError(err.response.data.message)
         }
     }
 
@@ -35,7 +44,7 @@ function Login() {
         <div className="text-center min-vh-100" id="LoginFormContainer">
             <div className="form-signin" id="LoginFormInner">
                 <form
-                onSubmit={handleLoginSubmit}
+                    onSubmit={handleLoginSubmit}
                 >
                     <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
 
@@ -67,6 +76,12 @@ function Login() {
                     <button className="w-100 btn btn-lg btn-primary" type="submit">
                         Sign in
                     </button>
+
+                    {loginError && (
+                        <h6 className="mt-3" style={{color: 'red'}}>
+                            {loginError}
+                        </h6>
+                    )}
                 </form>
             </div>
         </div>
