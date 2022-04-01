@@ -1,5 +1,5 @@
 import "../styles/Login.css";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import axios from "axios"
 import {useNavigate} from "react-router-dom"
 import Swal from 'sweetalert2'
@@ -7,12 +7,19 @@ import withReactContent from 'sweetalert2-react-content'
 
 function Login() {
     const MySwal = withReactContent(Swal)
+    const isLoggedIn = localStorage.getItem("access_token")
     let navigate = useNavigate()
     const [loginForm, setLoginForm] = useState({
         email: "",
         password: ""
     })
     const [loginError, setLoginError] = useState();
+
+    useEffect(()=> {
+        if (isLoggedIn) {
+            navigate('/')
+        }
+    })
 
     const handleFormInput = (e) => {
         const value = e.target.value
