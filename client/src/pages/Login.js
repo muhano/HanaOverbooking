@@ -2,8 +2,11 @@ import "../styles/Login.css";
 import { useState } from "react"
 import axios from "axios"
 import {useNavigate} from "react-router-dom"
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 function Login() {
+    const MySwal = withReactContent(Swal)
     let navigate = useNavigate()
     const [loginForm, setLoginForm] = useState({
         email: "",
@@ -31,6 +34,11 @@ function Login() {
             setLoginError()
             localStorage.setItem('access_token', response.data.access_token)
             if (response.status === 200) {
+                MySwal.fire(
+                    'Log In Success!',
+                    '',
+                    'success'
+                )
                 navigate('/')
             }
         } catch (err) {

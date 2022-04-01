@@ -1,11 +1,19 @@
 import { Container, Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom"
 import {useNavigate} from "react-router-dom"
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 function DashboardNavbar() {
+    const MySwal = withReactContent(Swal)
     let navigate = useNavigate()
     const handleLogout = () => {
         localStorage.clear()
+        MySwal.fire(
+            'Log Out Success!',
+            '',
+            'success'
+        )
         navigate('/login')
       }
 
