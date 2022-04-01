@@ -9,17 +9,14 @@ function DashboardNavbar() {
     let navigate = useNavigate()
 
     const handleLogout = () => {
-
         MySwal.fire({
             title: 'Are you sure?',
-    
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, log me out'
         }).then((result) => {
-
             if (result.isConfirmed) {
                 localStorage.clear()
                 MySwal.fire(
@@ -29,16 +26,7 @@ function DashboardNavbar() {
                 )
                 navigate('/login')
             }
-
         })
-
-        // localStorage.clear()
-        // MySwal.fire(
-        //     'Log Out Success!',
-        //     '',
-        //     'success'
-        // )
-        // navigate('/login')
     }
 
     return (
