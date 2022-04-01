@@ -92,7 +92,7 @@ function ProcessFeetable() {
         <Container className="mt-3">
             <h5>Data Process Fee</h5>
             <Link to="create">
-                <Button variant="primary">Create Process</Button>
+                <Button variant="success">Create Process</Button>
             </Link>
             <Table striped bordered hover responsive className="mt-3">
                 <thead>
@@ -125,7 +125,7 @@ function ProcessFeetable() {
                                 <Button
                                     onClick={() => navigate(`edit/${data.id}`)}
                                     className="me-2"
-                                    variant="success"
+                                    variant="primary"
                                 >
                                     Edit
                                 </Button>

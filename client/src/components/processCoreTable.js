@@ -65,26 +65,6 @@ function ProcessCoreTable() {
                 console.log(err);
             }
         })
-
-
-
-
-
-
-        // try {
-        //     const response = await axios({
-        //         method: 'delete',
-        //         url: `http://localhost:3000/processcore/${id}`,
-        //         headers: { access_token: localStorage.getItem("access_token") }
-        //     });
-        //     if (response.status === 200) {
-        //         console.log(`success delete data with id ${id}`);
-        //         const newList = dataList.filter(data => data.id !== id)
-        //         setDataList(newList)
-        //     }
-        // } catch (err) {
-        //     console.log(err);
-        // }
     }
 
     const convertDate = (value) => {
@@ -111,7 +91,7 @@ function ProcessCoreTable() {
         <Container className="mt-3">
             <h5>Data Process Core</h5>
             <Link to="create">
-                <Button variant="primary">Create Process</Button>
+                <Button variant="success">Create Process</Button>
             </Link>
             <Table striped bordered hover responsive className="mt-3">
                 <thead>
@@ -142,7 +122,7 @@ function ProcessCoreTable() {
                                 <Button
                                     onClick={() => navigate(`edit/${data.id}`)}
                                     className="me-2"
-                                    variant="success"
+                                    variant="primary"
                                 >
                                     Edit
                                 </Button>
