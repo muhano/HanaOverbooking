@@ -2,23 +2,26 @@ import { Container, Form, Button } from "react-bootstrap"
 import { useState } from "react"
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 function ProcessFeeForm() {
+    const MySwal = withReactContent(Swal)
     let navigate = useNavigate()
     const [dataForm, setDataForm] = useState({
-        reff_num: "", 
-        merchant_id: "", 
-        merchant_name: "", 
-        channel: "", 
-        bank_reff_num: "", 
-        transaction_time: "", 
-        transaction_type: "", 
-        amount: "", 
-        fee: "", 
-        service_name: "", 
-        remarks: "", 
-        response_code: "", 
-        transaction_status: "", 
+        reff_num: "",
+        merchant_id: "",
+        merchant_name: "",
+        channel: "",
+        bank_reff_num: "",
+        transaction_time: "",
+        transaction_type: "",
+        amount: "",
+        fee: "",
+        service_name: "",
+        remarks: "",
+        response_code: "",
+        transaction_status: "",
         transaction_desc: ""
     });
     const [error, setError] = useState();
@@ -46,6 +49,11 @@ function ProcessFeeForm() {
             setError()
             console.log("success add data");
             if (response.status === 201) {
+                MySwal.fire(
+                    'Success!',
+                    'Data has been created.',
+                    'success'
+                )
                 navigate("/processfee");
             }
         } catch (err) {

@@ -2,8 +2,11 @@ import { Container, Form, Button } from "react-bootstrap"
 import { useState } from "react"
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 function ProcessCoreForm() {
+    const MySwal = withReactContent(Swal)
     let navigate = useNavigate()
     const [dataForm, setDataForm] = useState({
         org_name: "",
@@ -41,8 +44,13 @@ function ProcessCoreForm() {
             });
 
             setError()
-            console.log("success add data");
             if (response.status === 201) {
+                console.log("success add data");
+                MySwal.fire(
+                    'Success!',
+                    'Data has been created.',
+                    'success'
+                )
                 navigate("/processcore");
             }
         } catch (err) {

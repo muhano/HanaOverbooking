@@ -2,8 +2,11 @@ import { Container, Form, Button } from "react-bootstrap"
 import { useState } from "react"
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 function ProcessApiForm() {
+    const MySwal = withReactContent(Swal)
     const navigate = useNavigate();
     const [dataForm, setDataForm] = useState({
         org_id: "",
@@ -32,12 +35,17 @@ function ProcessApiForm() {
             const response = await axios({
                 method: 'post',
                 url: 'http://localhost:3000/processapi',
-                headers: {access_token : localStorage.getItem("access_token")},
+                headers: { access_token: localStorage.getItem("access_token") },
                 data: dataForm
             });
 
-            console.log("success add data");
             if (response.status === 201) {
+                console.log("success add data");
+                MySwal.fire(
+                    'Success!',
+                    'Data has been created.',
+                    'success'
+                )
                 navigate("/");
             }
         } catch (err) {

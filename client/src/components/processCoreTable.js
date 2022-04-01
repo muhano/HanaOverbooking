@@ -3,8 +3,11 @@ import { Link, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
 import axios from 'axios'
 import moment from 'moment';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 function ProcessCoreTable() {
+    const MySwal = withReactContent(Swal)
     const navigate = useNavigate()
     const [dataList, setDataList] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -30,21 +33,58 @@ function ProcessCoreTable() {
         fetchData();
     }, []);
 
-    const handleDeleteData = async (id) => {
-        try {
-            const response = await axios({
-                method: 'delete',
-                url: `http://localhost:3000/processcore/${id}`,
-                headers: { access_token: localStorage.getItem("access_token") }
-            });
-            if (response.status === 200) {
-                console.log(`success delete data with id ${id}`);
-                const newList = dataList.filter(data => data.id !== id)
-                setDataList(newList)
+    const handleDeleteData = (id) => {
+        MySwal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then(async (result) => {
+            try {
+                if (result.isConfirmed) {
+                    const response = await axios({
+                        method: 'delete',
+                        url: `http://localhost:3000/processcore/${id}`,
+                        headers: { access_token: localStorage.getItem("access_token") }
+                    });
+                    if (response.status === 200) {
+                        console.log(`success delete data with id ${id}`);
+                        MySwal.fire(
+                            'Deleted!',
+                            'Data has been deleted.',
+                            'success'
+                        )
+                        const newList = dataList.filter(data => data.id !== id)
+                        setDataList(newList)
+                    }
+                }
+            } catch (err) {
+                console.log(err);
             }
-        } catch (err) {
-            console.log(err);
-        }
+        })
+
+
+
+
+
+
+        // try {
+        //     const response = await axios({
+        //         method: 'delete',
+        //         url: `http://localhost:3000/processcore/${id}`,
+        //         headers: { access_token: localStorage.getItem("access_token") }
+        //     });
+        //     if (response.status === 200) {
+        //         console.log(`success delete data with id ${id}`);
+        //         const newList = dataList.filter(data => data.id !== id)
+        //         setDataList(newList)
+        //     }
+        // } catch (err) {
+        //     console.log(err);
+        // }
     }
 
     const convertDate = (value) => {

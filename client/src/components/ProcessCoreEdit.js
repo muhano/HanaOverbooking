@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap"
 import { useParams, useNavigate } from "react-router-dom"
 import axios from "axios";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 function ProcessCoreEdit() {
+    const MySwal = withReactContent(Swal)
     const navigate = useNavigate()
     const { id } = useParams();
     const [dataForm, setDataForm] = useState({
@@ -74,6 +77,11 @@ function ProcessCoreEdit() {
             console.log(`success edit data with id ${id}`);
 
             if (response.status === 200) {
+                MySwal.fire(
+                    'Success!',
+                    'Data has been edited.',
+                    'success'
+                )
                 navigate("/processcore");
             }
         } catch (err) {
