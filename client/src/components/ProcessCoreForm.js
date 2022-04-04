@@ -38,7 +38,7 @@ function ProcessCoreForm() {
 
             const response = await axios({
                 method: 'post',
-                url: 'http://localhost:3000/processcore',
+                url: `${process.env.REACT_APP_BASE_URL}/processcore`,
                 headers: { access_token: localStorage.getItem("access_token") },
                 data: dataForm
             });

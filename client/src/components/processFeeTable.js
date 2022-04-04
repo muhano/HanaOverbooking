@@ -18,7 +18,7 @@ function ProcessFeetable() {
         async function fetchData() {
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/processfee`, {
+                    `${process.env.REACT_APP_BASE_URL}/processfee`, {
                     headers: { access_token: localStorage.getItem("access_token") }
                 }
                 );
@@ -48,7 +48,7 @@ function ProcessFeetable() {
                 if (result.isConfirmed) {
                     const response = await axios({
                         method: 'delete',
-                        url: `http://localhost:3000/processfee/${id}`,
+                        url: `${process.env.REACT_APP_BASE_URL}/processfee/${id}`,
                         headers: { access_token: localStorage.getItem("access_token") }
                     });
                     if (response.status === 200) {

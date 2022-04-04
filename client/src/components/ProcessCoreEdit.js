@@ -27,7 +27,7 @@ function ProcessCoreEdit() {
         async function fetchData() {
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/processcore/${id}`, {
+                    `${process.env.REACT_APP_BASE_URL}/processcore/${id}`, {
                     headers: { access_token: localStorage.getItem("access_token") }
                 }
                 );
@@ -69,7 +69,7 @@ function ProcessCoreEdit() {
         try {
             const response = await axios({
                 method: 'put',
-                url: `http://localhost:3000/processcore/${id}`,
+                url: `${process.env.REACT_APP_BASE_URL}/processcore/${id}`,
                 headers: { access_token: localStorage.getItem("access_token") },
                 data: dataForm
             });

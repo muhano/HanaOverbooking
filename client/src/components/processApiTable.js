@@ -13,11 +13,13 @@ function ProcessApiTable() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
 
+  // console.log(process.env.REACT_APP_BASE_URL, '<---------')
+
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await axios.get(
-          `http://localhost:3000/processapi`, {
+          `${process.env.REACT_APP_BASE_URL}/processapi`, {
           headers: { access_token: localStorage.getItem("access_token") }
         }
         );
@@ -47,7 +49,7 @@ function ProcessApiTable() {
         if (result.isConfirmed) {
           const response = await axios({
             method: 'delete',
-            url: `http://localhost:3000/processapi/${id}`,
+            url: `${process.env.REACT_APP_BASE_URL}/processapi/${id}`,
             headers: { access_token: localStorage.getItem("access_token") }
           });
           if (response.status === 200) {

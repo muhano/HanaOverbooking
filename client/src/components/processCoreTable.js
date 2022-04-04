@@ -17,7 +17,7 @@ function ProcessCoreTable() {
         async function fetchData() {
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/processcore`, {
+                    `${process.env.REACT_APP_BASE_URL}/processcore`, {
                     headers: { access_token: localStorage.getItem("access_token") }
                 }
                 );
@@ -47,7 +47,7 @@ function ProcessCoreTable() {
                 if (result.isConfirmed) {
                     const response = await axios({
                         method: 'delete',
-                        url: `http://localhost:3000/processcore/${id}`,
+                        url: `${process.env.REACT_APP_BASE_URL}/processcore/${id}`,
                         headers: { access_token: localStorage.getItem("access_token") }
                     });
                     if (response.status === 200) {

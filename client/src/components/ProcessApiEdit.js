@@ -26,7 +26,7 @@ function ProcessApiEdit() {
         async function fetchData() {
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/processapi/${id}`,{
+                    `${process.env.REACT_APP_BASE_URL}/processapi/${id}`,{
                         headers: {access_token : localStorage.getItem("access_token")}
                     }
                 );
@@ -66,7 +66,7 @@ function ProcessApiEdit() {
         try {
             const response = await axios({
                 method: 'put',
-                url: `http://localhost:3000/processapi/${id}`,
+                url: `${process.env.REACT_APP_BASE_URL}/processapi/${id}`,
                 headers: {access_token : localStorage.getItem("access_token")},
                 data: dataForm
             });

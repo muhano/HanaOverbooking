@@ -30,7 +30,7 @@ function ProcessFeeEdit() {
         async function fetchData() {
             try {
                 const response = await axios.get(
-                    `http://localhost:3000/processfee/${id}`, {
+                    `${process.env.REACT_APP_BASE_URL}/processfee/${id}`, {
                     headers: { access_token: localStorage.getItem("access_token") }
                 }
                 );
@@ -75,7 +75,7 @@ function ProcessFeeEdit() {
         try {
             const response = await axios({
                 method: 'put',
-                url: `http://localhost:3000/processfee/${id}`,
+                url: `${process.env.REACT_APP_BASE_URL}/processfee/${id}`,
                 headers: { access_token: localStorage.getItem("access_token") },
                 data: dataForm
             });

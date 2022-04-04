@@ -35,7 +35,7 @@ function Login() {
         try {
             const response = await axios({
                 method: 'post',
-                url: 'http://localhost:3000/user/login',
+                url: `${process.env.REACT_APP_BASE_URL}/user/login`,
                 data: loginForm
             });
             setLoginError()
