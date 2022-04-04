@@ -21,6 +21,9 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "notFound") {
     statusCode = 404
     message = "Instance not found"
+  } else if (err.name === "SequelizeDatabaseError") {
+    statusCode = 400;
+    message = "invalid input data type";
   }
 
   res.status(statusCode).json({ message });

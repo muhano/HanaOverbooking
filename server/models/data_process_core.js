@@ -15,14 +15,49 @@ module.exports = (sequelize, DataTypes) => {
   }
   data_process_core.init({
     org_name: DataTypes.STRING,
-    org_id: DataTypes.INTEGER,
-    merchant_name: DataTypes.INTEGER,
-    merchant_id: DataTypes.INTEGER,
+    org_id: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isNumeric: {msg: "Please input only numbers for org_id"}
+      }
+    },
+    merchant_name: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isNumeric: {msg: "Please input only numbers for merchant_name"}
+      }
+    },
+    merchant_id: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isNumeric: {msg: "Please input only numbers for merchant_id"}
+      }
+    },
     terminal_name: DataTypes.STRING,
-    terminal_id: DataTypes.INTEGER,
-    cif: DataTypes.INTEGER,
-    account: DataTypes.INTEGER,
-    limit: DataTypes.INTEGER,
+    terminal_id: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isNumeric: {msg: "Please input only numbers for terminal_id"}
+      }
+    },
+    cif: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isNumeric: {msg: "Please input only numbers for cif"}
+      }
+    },
+    account: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isNumeric: {msg: "Please input only numbers for account"}
+      }
+    },
+    limit: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isNumeric: {msg: "Please input only numbers for limit"}
+      }
+    },
     channel: DataTypes.STRING,
     partners_id: DataTypes.STRING
   }, {

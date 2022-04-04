@@ -14,8 +14,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   data_process_api.init({
-    org_id: DataTypes.INTEGER,
-    merchant_id: DataTypes.INTEGER,
+    org_id: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isNumeric: {msg: "Please input only numbers for org_id"}
+      }
+    },
+    merchant_id: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isNumeric: {msg: "Please input only numbers for merchant_id"}
+      }
+    },
     client_id: DataTypes.STRING,
     client_secret: DataTypes.STRING,
     public_key: DataTypes.STRING,

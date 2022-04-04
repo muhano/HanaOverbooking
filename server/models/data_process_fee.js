@@ -14,18 +14,48 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   data_process_fee.init({
-    reff_num: DataTypes.INTEGER,
-    merchant_id: DataTypes.INTEGER,
-    merchant_name: DataTypes.INTEGER,
+    reff_num: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isNumeric: {msg: "Please input only numbers for reff_num"}
+      }
+    },
+    merchant_id: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isNumeric: {msg: "Please input only numbers for merchant_id"}
+      }
+    },
+    merchant_name: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isNumeric: {msg: "Please input only numbers for merchant_name"}
+      }
+    },
     channel: DataTypes.STRING,
-    bank_reff_num: DataTypes.INTEGER,
+    bank_reff_num: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isNumeric: {msg: "Please input only numbers for bank_reff_num"}
+      }
+    },
     transaction_time: DataTypes.STRING,
     transaction_type: DataTypes.STRING,
     amount: DataTypes.STRING,
-    fee: DataTypes.INTEGER,
+    fee: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isNumeric: {msg: "Please input only numbers for fee"}
+      }
+    },
     service_name: DataTypes.STRING,
     remarks: DataTypes.STRING,
-    response_code: DataTypes.INTEGER,
+    response_code: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isNumeric: {msg: "Please input only numbers for response_code"}
+      }
+    },
     transaction_status: DataTypes.STRING,
     transaction_desc: DataTypes.STRING
   }, {
