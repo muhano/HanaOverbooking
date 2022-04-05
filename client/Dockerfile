@@ -1,15 +1,15 @@
 #Build Steps
-FROM node:16.14.2-alpine as build-step
+FROM node:16.14.2 as build-step
 
 RUN mkdir /usr/local/app
 WORKDIR /usr/local/app
 
 COPY package.json package-lock.json /usr/local/app/
 RUN npm install && npm cache clean --force
-COPY ./ ./
+COPY ./ /usr/local/app
 
 RUN npm run build
 
 #Run Steps
-FROM nginx:1.21.6-alpine  
+FROM nginx:1.21.6  
 COPY --from=build-step /usr/local/app/build /usr/share/nginx/html
