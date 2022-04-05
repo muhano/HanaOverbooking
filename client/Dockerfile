@@ -4,7 +4,7 @@ FROM node:16.14.2 as build-step
 RUN mkdir /app
 WORKDIR /app
 
-COPY package.json package-lock.json /app/
+COPY package.json package-lock.json /app
 RUN npm install
 COPY ./ /app
 
