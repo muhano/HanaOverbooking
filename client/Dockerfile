@@ -7,7 +7,7 @@ COPY package.json package-lock.json /usr/local/app/
 RUN npm install && npm cache clean --force
 COPY ./ ./
 
-CMD ["npm", "run", "build"]
+RUN npm run build
 
 #Run Steps
 FROM nginx:1.21.6-alpine  
