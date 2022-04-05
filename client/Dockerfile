@@ -5,7 +5,7 @@ RUN mkdir /app
 WORKDIR /app
 
 COPY package.json package-lock.json /app/
-RUN npm install && npm cache clean --force
+RUN npm install
 COPY ./ /app
 
 RUN npm run build
