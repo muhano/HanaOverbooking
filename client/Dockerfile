@@ -1,15 +1,15 @@
 #Build Steps
 FROM node:16.14.2 as build-step
 
-RUN mkdir /usr/local/app
-WORKDIR /usr/local/app
+RUN mkdir /app
+WORKDIR /app
 
-COPY package.json package-lock.json /usr/local/app/
+COPY package.json package-lock.json /app/
 RUN npm install && npm cache clean --force
-COPY ./ /usr/local/app
+COPY ./ /app
 
 RUN npm run build
 
 #Run Steps
 FROM nginx:1.21.6  
-COPY --from=build-step /usr/local/app/build /usr/share/nginx/html
+COPY --from=build-step /app/build /usr/share/nginx/html
