@@ -151,4 +151,4 @@ function ProcessApiTable() {
   )
 }
 
-export default ProcessApiTable
+export default ProcessApiTable;

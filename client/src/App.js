@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard"
-import ProcessApiTable from "./components/ProcessApiTable"
+import ProcessApiTable from "./components/ProcessApiTable";
 import ProcessCoreTable from "./components/ProcessCoreTable"
 import ProcessFeeTable from "./components/ProcessFeeTable"
 import ProcessApiForm from "./components/ProcessApiForm"
