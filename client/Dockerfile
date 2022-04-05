@@ -4,6 +4,9 @@ FROM node:16.14.2 as build-step
 RUN mkdir /app
 WORKDIR /app
 
+ENV REACT_APP_BASE_URL=http://server2-latihan-hana1.192.168.99.100.nip.io
+ENV PORT=3001
+
 COPY package.json /app
 RUN npm install
 COPY . /app
