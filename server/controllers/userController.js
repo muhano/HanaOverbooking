@@ -17,7 +17,6 @@ const userRegister = async (req, res, next) => {
 }
 
 const userLogin = async (req, res, next) => {
-    response.set('Access-Control-Allow-Origin', '*');
     try {
         const { email, password } = req.body;
         if (!email || !password) {
