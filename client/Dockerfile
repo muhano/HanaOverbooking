@@ -13,3 +13,5 @@ RUN npm run build
 #Run Steps
 FROM nginx:1.21.6  
 COPY --from=build-step /app/build /usr/share/nginx/html
+
+EXPOSE 8080
