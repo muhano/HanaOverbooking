@@ -5,7 +5,7 @@ const processFee = require("./processFeeRoute")
 const user = require("./userRoute")
 
 router.get("/", (req, res) => {
-  res.send("Server Hana OverBooking with cors-2");
+  res.send("Server Hana OverBooking with cors-3");
 });
 
 router.use(user)
