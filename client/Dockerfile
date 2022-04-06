@@ -14,4 +14,4 @@ RUN npm run build
 FROM nginx:1.21.6  
 COPY --from=build-step /app/build /usr/share/nginx/html
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "start"]
