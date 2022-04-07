@@ -2,7 +2,7 @@ import { Container, Table, Button } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
 import axios from 'axios'
-import moment from 'moment';
+import moment from 'moment-timezone';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
@@ -68,7 +68,7 @@ function ProcessCoreTable() {
     }
 
     const convertDate = (value) => {
-        return moment(value).format('D-MM-YYYY, HH:mm:ss');
+        return moment(value).tz('Asia/Jakarta').format('D-MMMM-YYYY, HH:mm:ss');
     }
 
     if (loading) {

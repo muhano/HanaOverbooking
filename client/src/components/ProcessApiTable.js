@@ -1,5 +1,5 @@
 import axios from "axios";
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { useEffect, useState } from "react";
 import { Container, Table, Button } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
@@ -70,7 +70,7 @@ function ProcessApiTable() {
   }
 
   const convertDate = (value) => {
-    return moment(value).format('D-MM-YYYY, HH:mm:ss');
+    return moment(value).tz('Asia/Jakarta').format('D-MMMM-YYYY, HH:mm:ss');
   }
 
   if (loading) {
