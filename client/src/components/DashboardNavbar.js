@@ -39,6 +39,7 @@ function DashboardNavbar() {
                     <Nav.Link as={Link} to="processfee">Data Process Fee</Nav.Link>
                 </Nav>
                 <Nav>
+                    <Nav.Link as={Link} to="user/create">Add User</Nav.Link>
                     <Nav.Link onClick={handleLogout} href="">Log Out</Nav.Link>
                 </Nav>
             </Container>

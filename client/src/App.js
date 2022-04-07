@@ -10,7 +10,8 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import ProcessCoreForm from "./components/ProcessCoreForm";
 import ProcessCoreEdit from "./components/ProcessCoreEdit";
 import ProcessFeeForm from "./components/ProcessFeeForm";
-import ProcessFeeEdit from "./components/ProcessFeeEdit"
+import ProcessFeeEdit from "./components/ProcessFeeEdit";
+import UserForm from "./components/UserForm";
 
 function App() {
     return (
@@ -30,6 +31,7 @@ function App() {
                 <Route path="processcore/edit/:id" element={<ProcessCoreEdit />} />
                 <Route path="processfee/create" element={<ProcessFeeForm />} />
                 <Route path="processfee/edit/:id" element={<ProcessFeeEdit />} />
+                <Route path="user/create" element={<UserForm />} />
             </Route>
         </Routes>
     )
