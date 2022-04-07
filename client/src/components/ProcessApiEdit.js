@@ -21,14 +21,15 @@ function ProcessApiEdit() {
         ip_address: "",
         service_name: ""
     });
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchData() {
             try {
                 const response = await axios.get(
-                    `${process.env.REACT_APP_BASE_URL}/processapi/${id}`,{
-                        headers: {access_token : localStorage.getItem("access_token")}
-                    }
+                    `${process.env.REACT_APP_BASE_URL}/processapi/${id}`, {
+                    headers: { access_token: localStorage.getItem("access_token") }
+                }
                 );
 
                 let result = response.data
@@ -44,9 +45,11 @@ function ProcessApiEdit() {
                     ip_address: result.ip_address,
                     service_name: result.service_name
                 })
+                setLoading(false);
 
             } catch (err) {
                 console.log(err);
+                setLoading(false);
             }
         }
         fetchData();
@@ -67,12 +70,12 @@ function ProcessApiEdit() {
             const response = await axios({
                 method: 'put',
                 url: `${process.env.REACT_APP_BASE_URL}/processapi/${id}`,
-                headers: {access_token : localStorage.getItem("access_token")},
+                headers: { access_token: localStorage.getItem("access_token") },
                 data: dataForm
             });
 
             console.log(`success edit data with id ${id}`);
-            
+
             if (response.status === 200) {
                 MySwal.fire(
                     'Success!',
@@ -85,6 +88,14 @@ function ProcessApiEdit() {
             console.log(err);
         }
     };
+
+    if (loading) {
+        return (
+            <Container className="mt-3">
+                <h2>Loading...</h2>
+            </Container>
+        )
+    }
 
     return (
         <Container>

@@ -22,6 +22,7 @@ function ProcessCoreEdit() {
         channel: "",
         partners_id: ""
     });
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchData() {
@@ -47,9 +48,11 @@ function ProcessCoreEdit() {
                     channel: result.channel,
                     partners_id: result.partners_id
                 })
+                setLoading(false);
 
             } catch (err) {
                 console.log(err);
+                setLoading(false);
             }
         }
         fetchData();
@@ -89,11 +92,19 @@ function ProcessCoreEdit() {
         }
     };
 
+    if (loading) {
+        return (
+            <Container className="mt-3">
+                <h2>Loading...</h2>
+            </Container>
+        )
+    }
+
     return (
         <Container>
             <h5 className="mt-3">Edit Data Process Core with Id {id}</h5>
             <Form
-                onSubmit={handleEditData} 
+                onSubmit={handleEditData}
                 className="mt-3"
             >
                 <Form.Group className="mb-3">

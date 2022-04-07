@@ -25,6 +25,7 @@ function ProcessFeeEdit() {
         transaction_status: "",
         transaction_desc: ""
     });
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchData() {
@@ -53,9 +54,11 @@ function ProcessFeeEdit() {
                     transaction_status: result.transaction_status,
                     transaction_desc: result.transaction_desc
                 })
+                setLoading(false);
 
             } catch (err) {
                 console.log(err);
+                setLoading(false);
             }
         }
         fetchData();
@@ -94,6 +97,14 @@ function ProcessFeeEdit() {
             console.log(err);
         }
     };
+
+    if (loading) {
+        return (
+            <Container className="mt-3">
+                <h2>Loading...</h2>
+            </Container>
+        )
+    }
 
     return (
         <Container>
