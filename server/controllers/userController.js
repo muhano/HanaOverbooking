@@ -9,6 +9,10 @@ const updated_at = new Date(idnDate)
 
 const userRegister = async (req, res, next) => {
     try {
+        const date = new Date();
+        const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
+        const created_at = idnDate
+        const updated_at = idnDate
         const { email, password } = req.body;
 
         const newUser = await user.create({

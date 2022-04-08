@@ -1,8 +1,4 @@
 const { data_process_fee } = require("../models/index.js")
-const date = new Date();
-const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
-const created_at = new Date(idnDate)
-const updated_at = new Date(idnDate)
 
 const getProcessFee = async (req, res, next) => {
     try {
@@ -30,6 +26,10 @@ const findProcessFee = async (req, res, next) => {
 
 const createProcessFee = async (req, res, next) => {
     try {
+        const date = new Date();
+        const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
+        const created_at = idnDate
+        const updated_at = idnDate
         const { reff_num, merchant_id, merchant_name, channel, bank_reff_num, transaction_time, transaction_type, amount, fee, service_name, remarks, response_code, transaction_status, transaction_desc } = req.body;
 
         const newProcessFee = await data_process_fee.create({
@@ -43,6 +43,9 @@ const createProcessFee = async (req, res, next) => {
 
 const editProcessFee = async (req, res, next) => {
     try {
+        const date = new Date();
+        const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
+        const updated_at = idnDate
         const instanceId = req.params.id
 
         const { reff_num, merchant_id, merchant_name, channel, bank_reff_num, transaction_time, transaction_type, amount, fee, service_name, remarks, response_code, transaction_status, transaction_desc } = req.body;

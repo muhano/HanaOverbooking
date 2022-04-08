@@ -1,8 +1,4 @@
 const { data_process_core } = require("../models/index.js")
-const date = new Date();
-const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
-const created_at = new Date(idnDate)
-const updated_at = new Date(idnDate)
 
 const getProcessCore = async (req, res, next) => {
     try {
@@ -29,6 +25,10 @@ const findProcessCore = async (req, res, next) => {
 
 const createProcessCore = async (req, res, next) => {
     try {
+        const date = new Date();
+        const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
+        const created_at = idnDate
+        const updated_at = idnDate
         const { org_name, org_id, merchant_name, merchant_id, terminal_name, terminal_id, cif, account, limit, channel, partners_id } = req.body;
 
         const newProcessCore = await data_process_core.create({
@@ -42,6 +42,9 @@ const createProcessCore = async (req, res, next) => {
 
 const editProcessCore = async (req, res, next) => {
     try {
+        const date = new Date();
+        const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
+        const updated_at = idnDate
         const instanceId = req.params.id
 
         const { org_name, org_id, merchant_name, merchant_id, terminal_name, terminal_id, cif, account, limit, channel, partners_id } = req.body;

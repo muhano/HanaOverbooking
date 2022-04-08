@@ -1,8 +1,9 @@
 const { data_process_api } = require("../models/index.js")
-const date = new Date();
-const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
-const created_at = new Date(idnDate)
-const updated_at = new Date(idnDate)
+// const date = new Date();
+// const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
+// const created_at = idnDate
+// const updated_at = idnDate
+// console.log(idnDate);
 
 const getProcessApi = async (req, res, next) => {
     try {
@@ -15,6 +16,10 @@ const getProcessApi = async (req, res, next) => {
 
 const createProcessApi = async (req, res, next) => {
     try {
+        const date = new Date();
+        const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
+        const created_at = idnDate
+        const updated_at = idnDate
         const { org_id, merchant_id, client_id, client_secret, public_key, private_key, host_name, ip_address, service_name } = req.body;
 
         const newProcessApi = await data_process_api.create({
@@ -42,6 +47,9 @@ const findProcessApi = async (req, res, next) => {
 
 const editProcessApi = async (req, res, next) => {
     try {
+        const date = new Date();
+        const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
+        const updated_at = idnDate
         const instanceId = req.params.id
         const { org_id, merchant_id, client_id, client_secret, public_key, private_key, host_name, ip_address, service_name } = req.body;
 
