@@ -1,4 +1,8 @@
 const { data_process_fee } = require("../models/index.js")
+const date = new Date();
+const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
+const created_at = new Date(idnDate)
+const updated_at = new Date(idnDate)
 
 const getProcessFee = async (req, res, next) => {
     try {
@@ -29,7 +33,7 @@ const createProcessFee = async (req, res, next) => {
         const { reff_num, merchant_id, merchant_name, channel, bank_reff_num, transaction_time, transaction_type, amount, fee, service_name, remarks, response_code, transaction_status, transaction_desc } = req.body;
 
         const newProcessFee = await data_process_fee.create({
-            reff_num, merchant_id, merchant_name, channel, bank_reff_num, transaction_time, transaction_type, amount, fee, service_name, remarks, response_code, transaction_status, transaction_desc
+            reff_num, merchant_id, merchant_name, channel, bank_reff_num, transaction_time, transaction_type, amount, fee, service_name, remarks, response_code, transaction_status, transaction_desc, created_at, updated_at
         });
         res.status(201).json(newProcessFee);
     } catch (err) {
@@ -50,7 +54,7 @@ const editProcessFee = async (req, res, next) => {
 
         const updatedProcessFee = await data_process_fee.update(
             {
-                reff_num, merchant_id, merchant_name, channel, bank_reff_num, transaction_time, transaction_type, amount, fee, service_name, remarks, response_code, transaction_status, transaction_desc
+                reff_num, merchant_id, merchant_name, channel, bank_reff_num, transaction_time, transaction_type, amount, fee, service_name, remarks, response_code, transaction_status, transaction_desc, updated_at
             },
             {
                 where: { id: instanceId },

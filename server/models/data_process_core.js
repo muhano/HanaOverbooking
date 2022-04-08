@@ -59,12 +59,14 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     channel: DataTypes.STRING,
-    partners_id: DataTypes.STRING
+    partners_id: DataTypes.STRING,
+    created_at: DataTypes.DATE,
+    updated_at: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'data_process_core',
     tableName: 'data_process_core',
-    timestamps: true,
+    timestamps: false,
     createdAt: 'created_at',
     updatedAt: 'updated_at'
   });

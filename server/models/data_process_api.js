@@ -32,12 +32,14 @@ module.exports = (sequelize, DataTypes) => {
     private_key: DataTypes.STRING,
     host_name: DataTypes.STRING,
     ip_address: DataTypes.TEXT,
-    service_name: DataTypes.TEXT
+    service_name: DataTypes.TEXT,
+    created_at: DataTypes.DATE,
+    updated_at: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'data_process_api',
     tableName: 'data_process_api',
-    timestamps: true,
+    timestamps: false,
     createdAt: 'created_at',
     updatedAt: 'updated_at'
   });

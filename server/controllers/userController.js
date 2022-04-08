@@ -1,6 +1,11 @@
 const { user } = require("../models")
 const {compareHash} = require("../helpers/bcrypt")
 const { signToken } = require("../helpers/jwt");
+const date = new Date();
+const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
+const created_at = new Date(idnDate)
+const updated_at = new Date(idnDate)
+
 
 const userRegister = async (req, res, next) => {
     try {
@@ -8,7 +13,9 @@ const userRegister = async (req, res, next) => {
 
         const newUser = await user.create({
             email,
-            password
+            password,
+            created_at, 
+            updated_at
         });
         res.status(201).json({ id: newUser.id, email: newUser.email });
     } catch (err) {

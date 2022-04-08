@@ -57,12 +57,14 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     transaction_status: DataTypes.STRING,
-    transaction_desc: DataTypes.STRING
+    transaction_desc: DataTypes.STRING,
+    created_at: DataTypes.DATE,
+    updated_at: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'data_process_fee',
     tableName: 'data_process_fee',
-    timestamps: true,
+    timestamps: false,
     createdAt: 'created_at',
     updatedAt: 'updated_at'
   });

@@ -32,11 +32,13 @@ module.exports = (sequelize, DataTypes) => {
         notNull: {msg: "Password is required"},
         notEmpty: {msg: "Password is required"},
       }
-    }
+    },
+    created_at: DataTypes.DATE,
+    updated_at: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'user',
-    timestamps: true,
+    timestamps: false,
     createdAt: 'created_at',
     updatedAt: 'updated_at'
   });

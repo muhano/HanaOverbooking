@@ -1,4 +1,8 @@
 const { data_process_api } = require("../models/index.js")
+const date = new Date();
+const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
+const created_at = new Date(idnDate)
+const updated_at = new Date(idnDate)
 
 const getProcessApi = async (req, res, next) => {
     try {
@@ -14,7 +18,7 @@ const createProcessApi = async (req, res, next) => {
         const { org_id, merchant_id, client_id, client_secret, public_key, private_key, host_name, ip_address, service_name } = req.body;
 
         const newProcessApi = await data_process_api.create({
-            org_id, merchant_id, client_id, client_secret, public_key, private_key, host_name, ip_address, service_name
+            org_id, merchant_id, client_id, client_secret, public_key, private_key, host_name, ip_address, service_name, created_at, updated_at
         });
         res.status(201).json(newProcessApi);
     } catch (err) {
@@ -48,7 +52,7 @@ const editProcessApi = async (req, res, next) => {
 
         const updatedProcessApi = await data_process_api.update(
             {
-                org_id, merchant_id, client_id, client_secret, public_key, private_key, host_name, ip_address, service_name
+                org_id, merchant_id, client_id, client_secret, public_key, private_key, host_name, ip_address, service_name, updated_at
             },
             {
                 where: { id: instanceId },
