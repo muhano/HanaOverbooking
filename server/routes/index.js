@@ -5,7 +5,7 @@ const processFee = require("./processFeeRoute")
 const user = require("./userRoute")
 
 router.get("/", (req, res) => {
-  res.send("Server Hana OverBooking with cors enabled");
+  res.send("Server Hana OverBooking with cors enabled and cahnged ip");
 });
 
 router.use(user)
