@@ -6,7 +6,6 @@ const errorHandler = require('./middlewares/errorHandler')
 const router = require('./routes')
 
 const port = process.env.PORT || 3000;
-const ip = '0.0.0.0';
 
 app.use(cors())
 app.use(express.json()) // for parsing application/json
@@ -17,5 +16,5 @@ app.use(router)
 app.use(errorHandler)
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}, with ip ${ip}`)
+  console.log(`App listening on port ${port}`)
 })
