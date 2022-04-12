@@ -68,10 +68,10 @@ const clientValidation = async (req, res, next) => {
             where: {client_id : clientId}
         })
         if (!findClient) {
-            res.status(200).json('Client not found')
+            res.status(200).json({ message: 'Client not found'})
         }
         
-        res.status(200).json('Success')
+        res.status(200).json({ message: 'Success'})
     } catch (err) {
         next(err)
     }
