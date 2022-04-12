@@ -1,5 +1,5 @@
 const errorHandler = (err, req, res, next) => {
-  console.log(err)
+  console.log(err.response, '<------')
   statusCode = 500;
   message = "Internal server error";
 
@@ -24,6 +24,9 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "SequelizeDatabaseError") {
     statusCode = 400;
     message = "invalid input data type";
+  } else if (err.name === "noHeader") {
+    statusCode = 400;
+    message = "Header parameters missing";
   }
 
   res.status(statusCode).json({ message });

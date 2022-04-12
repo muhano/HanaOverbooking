@@ -24,6 +24,12 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "SequelizeDatabaseError") {
     statusCode = 400;
     message = "invalid input data type";
+  } else if (err.name === "noHeader") {
+    statusCode = 400;
+    message = "Header parameters missing";
+  } else if (err.name === "clientNotFound") {
+    statusCode = 404
+    message = "client not found"
   }
 
   res.status(statusCode).json({ message });

@@ -1,4 +1,4 @@
-const { user } = require("../models")
+const { user, data_process_api } = require("../models")
 const {compareHash} = require("../helpers/bcrypt")
 const { signToken } = require("../helpers/jwt");
 const date = new Date();
@@ -57,4 +57,24 @@ const userLogin = async (req, res, next) => {
     }
 };
 
-module.exports = { userRegister, userLogin }
+const clientValidation = async (req, res, next) => {
+    try {
+        const clientId = req.headers['x-client-key'];
+        if (!clientId) {
+            throw { name: "noHeader"}
+        }
+
+        const findClient = await data_process_api.findOne({
+            where: {client_id : clientId}
+        })
+        if (!findClient) {
+            res.status(200).json('Client not found')
+        }
+        
+        res.status(200).json('Success')
+    } catch (err) {
+        next(err)
+    }
+}
+
+module.exports = { userRegister, userLogin, clientValidation }
