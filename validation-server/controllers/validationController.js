@@ -17,7 +17,7 @@ const clientValidation = async (req, res, next) => {
         })
 
         if (response.data.message === 'Client not found') {
-            res.status(404).json(response.data)
+            throw { name: "clientNotFound"}
         }
 
         res.status(200).json(response.data)

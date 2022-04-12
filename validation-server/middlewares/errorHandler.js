@@ -1,5 +1,5 @@
 const errorHandler = (err, req, res, next) => {
-  console.log(err.response, '<------')
+  console.log(err)
   statusCode = 500;
   message = "Internal server error";
 
@@ -27,6 +27,9 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "noHeader") {
     statusCode = 400;
     message = "Header parameters missing";
+  } else if (err.name === "clientNotFound") {
+    statusCode = 404
+    message = "Client not found"
   }
 
   res.status(statusCode).json({ message });

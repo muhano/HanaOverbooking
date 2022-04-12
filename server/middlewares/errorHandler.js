@@ -29,7 +29,7 @@ const errorHandler = (err, req, res, next) => {
     message = "Header parameters missing";
   } else if (err.name === "clientNotFound") {
     statusCode = 404
-    message = "client not found"
+    message = "Client not found"
   }
 
   res.status(statusCode).json({ message });
