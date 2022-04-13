@@ -60,18 +60,27 @@ const userLogin = async (req, res, next) => {
 const clientValidation = async (req, res, next) => {
     try {
         const clientId = req.headers['x-client-key'];
+        const {client_secret} = req.body
+        console.log(client_secret, '<-------');
         if (!clientId) {
             throw { name: "noHeader"}
         }
 
         const findClient = await data_process_api.findOne({
-            where: {client_id : clientId}
+            where: {client_id : clientId, client_secret}
         })
         if (!findClient) {
             res.status(200).json({ message: 'Client not found'})
         }
+
+        const payload = {
+            client_id: findClient.client_id,
+            service_name: findClient.service_name
+        };
+
+        const token = signToken(payload);
         
-        res.status(200).json({ message: 'Success'})
+        res.status(200).json(token)
     } catch (err) {
         next(err)
     }

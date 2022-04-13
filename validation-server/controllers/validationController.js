@@ -4,23 +4,23 @@ const clientValidation = async (req, res, next) => {
     try {
         
         const clientKey = req.headers['x-client-key'];
+        const {client_secret} = req.body;
         if (!clientKey) {
             throw { name: "noHeader"}
         }
-
 
         const response = await instanceAxios({
             url: '/user/clientValidation',
             method: 'post',
             headers: {'X-CLIENT-KEY': clientKey},
-
+            data: { client_secret }
         })
 
         if (response.data.message === 'Client not found') {
             throw { name: "clientNotFound"}
         }
 
-        res.status(200).json(response.data)
+        res.status(200).json({accessToken: response.data})
     } catch (err) {
         next(err)
     }
