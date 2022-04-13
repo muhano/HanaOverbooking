@@ -65,6 +65,9 @@ const clientValidation = async (req, res, next) => {
         if (!clientId) {
             throw { name: "noHeader"}
         }
+        if (!client_secret) {
+            throw { name: "noBody"}
+        }
 
         const findClient = await data_process_api.findOne({
             where: {client_id : clientId, client_secret}

@@ -30,6 +30,9 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "clientNotFound") {
     statusCode = 404
     message = "Client not found"
+  } else if (err.name === "noBody") {
+    statusCode = 400;
+    message = "Body parameters missing";
   }
 
   res.status(statusCode).json({ message });

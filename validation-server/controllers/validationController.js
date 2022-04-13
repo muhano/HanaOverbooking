@@ -8,6 +8,9 @@ const clientValidation = async (req, res, next) => {
         if (!clientKey) {
             throw { name: "noHeader"}
         }
+        if (!client_secret) {
+            throw { name: "noBody"}
+        }
 
         const response = await instanceAxios({
             url: '/user/clientValidation',
