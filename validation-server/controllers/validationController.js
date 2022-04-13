@@ -13,7 +13,7 @@ const clientValidation = async (req, res, next) => {
         }
 
         const response = await instanceAxios({
-            url: '/user/clientValidation',
+            url: '/user/clientvalidation',
             method: 'post',
             headers: {'X-CLIENT-KEY': clientKey},
             data: { client_secret }

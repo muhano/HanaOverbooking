@@ -4,7 +4,7 @@ const userAuthentication = require('../middlewares/authentication')
 
 
 router.post("/user/login", userController.userLogin)
-router.post("/user/clientValidation", userController.clientValidation)
+router.post("/user/clientvalidation", userController.clientValidation)
 router.use(userAuthentication)
 router.post("/user/register", userController.userRegister)
 
