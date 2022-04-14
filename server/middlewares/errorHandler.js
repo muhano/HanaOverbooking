@@ -15,9 +15,9 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "wrongLogin") {
       statusCode = 401
       message = "Invalid email/password"
-  } else if (err.name === "JsonWebTokenError") {
+  } else if (err.name === "JsonWebTokenError" || err.name === "TokenExpiredError") {
     statusCode = 401
-    message = "Invalid token"
+    message = "Invalid Token"
   } else if (err.name === "notFound") {
     statusCode = 404
     message = "Instance not found"
