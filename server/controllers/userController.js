@@ -61,7 +61,6 @@ const clientValidation = async (req, res, next) => {
     try {
         const clientId = req.headers['x-client-key'];
         const {client_secret, public_key, private_key} = req.body
-        console.log(client_secret, public_key, private_key, '<-------');
         if (!clientId) {
             throw { name: "noHeader"}
         }
