@@ -156,8 +156,8 @@ function ProcessApiEdit() {
                         name="public_key"
                         value={dataForm.public_key}
                         onChange={handleFormInput}
-                        maxLength={250}
-                        type="text"
+                        as="textarea"
+                        rows={3}
                         placeholder=""
                     />
                 </Form.Group>
@@ -168,8 +168,8 @@ function ProcessApiEdit() {
                         name="private_key"
                         value={dataForm.private_key}
                         onChange={handleFormInput}
-                        maxLength={250}
-                        type="text"
+                        as="textarea"
+                        rows={3}
                         placeholder=""
                     />
                 </Form.Group>
