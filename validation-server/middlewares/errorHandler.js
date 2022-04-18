@@ -28,15 +28,35 @@ const errorHandler = (err, req, res, next) => {
     statusCode = 400;
     message = "Missing mandatory header parameters";
   } else if (err.name === "clientNotFound") {
-    statusCode = 404
-    message = "Client not found"
+    statusCode = 401
+    message = "Invalid header X-CLIENT-KEY"
   } else if (err.name === "noBody") {
     statusCode = 400;
     message = "Missing mandatory body parameters";
   } else if (err.name === "invalidDate") {
-    statusCode = 400;
+    statusCode = 401;
     message = "Invalid field format header X-TIMESTAMP";
-  }
+  } else if (err.name === "falseClientSecret") {
+    statusCode = 401;
+    message = "Invalid body grant_type";
+  }  else if (err.response) {
+    if (err.response.data.message === "Invalid Token") {
+      statusCode = 401;
+      message = "Invalid token header ";
+    } else if (err.response.data.message === "Client not found") {
+      statusCode = 401;
+      message = "Invalid header X-CLIENT-KEY";
+    } else if (err.response.data.message === "Invalid body grant_type") {
+      statusCode = 401;
+      message = "Invalid body grant_type";
+    } else if (err.response.data.message === "Header X-Signature token not match with X-CLIENT-KEY or X-TIMESTAMP") {
+      statusCode = 401;
+      message = "Header X-Signature token not match with X-CLIENT-KEY or X-TIMESTAMP";
+    }
+  } else if (err.name === "XSignatureMismatch") {
+    statusCode = 401;
+    message = "Header X-Signature token not match with X-CLIENT-KEY or X-TIMESTAMP";
+  } 
 
   res.status(statusCode).json({ message });
 };

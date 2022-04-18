@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const SECRET_KEY = process.env.SECRET_KEY
 
 const signToken = (value) => {
-    return jwt.sign(value, SECRET_KEY, { algorithm: 'HS512' });
+    return jwt.sign(value, SECRET_KEY, { algorithm: 'HS512', expiresIn: '900s'});
 }
 
 const verifyToken = (token) => {
@@ -13,4 +13,13 @@ const signClientToken = (value) => {
     return jwt.sign(value, SECRET_KEY, { algorithm: 'HS512', expiresIn: '900s'});
 }
 
-module.exports = {signToken, verifyToken, signClientToken}
+const verifyClientToken = (token, public_key) => {
+    const public_key_secret=`
+-----BEGIN PUBLIC KEY-----
+${public_key}
+-----END PUBLIC KEY-----
+`
+    return jwt.verify(token, public_key_secret, { algorithm: 'RS256'});
+}
+
+module.exports = {signToken, verifyToken, signClientToken, verifyClientToken}

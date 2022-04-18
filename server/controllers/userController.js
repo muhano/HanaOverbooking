@@ -1,10 +1,11 @@
 const { user, data_process_api } = require("../models")
 const {compareHash} = require("../helpers/bcrypt")
-const { signToken, signClientToken } = require("../helpers/jwt");
+const { signToken, signClientToken, verifyClientToken } = require("../helpers/jwt");
 const date = new Date();
 const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
 const created_at = new Date(idnDate)
 const updated_at = new Date(idnDate)
+const jwt = require('jsonwebtoken');
 
 
 const userRegister = async (req, res, next) => {
@@ -60,22 +61,43 @@ const userLogin = async (req, res, next) => {
 const clientValidation = async (req, res, next) => {
     try {
         const {'x-client-key' : clientId, 'x-timestamp' : timeStamp, 'x-signature' : clientSignature} = req.headers;
-        const {client_secret, public_key, private_key, grant_type} = req.body
+        const { grant_type} = req.body
 
         // console.log(clientId, timeStamp, clientSignature, grant_type, '<-----------');
 
         if (!clientId || !timeStamp || !clientSignature) {
             throw { name: "noHeader"}
         }
-        if (!client_secret || !public_key || !private_key || !grant_type ) {
+
+        if (!Date.parse(timeStamp)) {
+            throw { name: "invalidDate"}
+        }
+
+        if ( !grant_type ) {
             throw { name: "noBody"}
         }
 
         const findClient = await data_process_api.findOne({
-            where: {client_id : clientId, client_secret, public_key, private_key}
+            where: { client_id : clientId }
         })
         if (!findClient) {
-            res.status(200).json({ message: 'Client not found'})
+            throw { name: "clientNotFound"}
+        }
+
+        if (findClient.client_secret !== grant_type) {
+            throw { name: "falseClientSecret"}
+        }
+
+        const public_key = findClient.public_key
+
+        const isValidSignature = verifyClientToken(clientSignature, public_key)
+        // console.log(isValidSignature, '<----------');
+
+        const validSignature = isValidSignature.split('|')
+        // console.log(timeStamp);
+        // console.log(validSignature, '<----------');
+        if (validSignature[0] !== clientId || validSignature[1] !== timeStamp) {
+            throw { name: "XSignatureMismatch"}
         }
 
         const payload = {
