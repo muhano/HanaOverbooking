@@ -2,13 +2,17 @@ const instanceAxios = require('../apis/axios')
 
 const clientValidation = async (req, res, next) => {
     try {
-        
-        const clientKey = req.headers['x-client-key'];
-        const {client_secret, public_key, private_key} = req.body;
-        if (!clientKey) {
+        const {'x-client-key' : clientKey, 'x-timestamp' : timeStamp, 'x-signature' : clientSignature} = req.headers;
+        const {client_secret, public_key, private_key, grant_type} = req.body;
+        if (!clientKey || !timeStamp || !clientSignature) {
             throw { name: "noHeader"}
         }
-        if (!client_secret || !public_key || !private_key ) {
+
+        if (!Date.parse(timeStamp)) {
+            throw { name: "invalidDate"}
+        }
+
+        if (!client_secret || !public_key || !private_key || !grant_type ) {
             throw { name: "noBody"}
         }
 

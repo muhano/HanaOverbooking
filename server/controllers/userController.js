@@ -1,6 +1,6 @@
 const { user, data_process_api } = require("../models")
 const {compareHash} = require("../helpers/bcrypt")
-const { signToken } = require("../helpers/jwt");
+const { signToken, signClientToken } = require("../helpers/jwt");
 const date = new Date();
 const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
 const created_at = new Date(idnDate)
@@ -80,7 +80,7 @@ const clientValidation = async (req, res, next) => {
             service_name: findClient.service_name
         };
 
-        const token = signToken(payload);
+        const token = signClientToken(payload);
         
         res.status(200).json(token)
     } catch (err) {
