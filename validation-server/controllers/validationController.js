@@ -2,27 +2,27 @@ const instanceAxios = require('../apis/axios')
 
 const clientValidation = async (req, res, next) => {
     try {
-        const {'x-client-key' : clientKey, 'x-timestamp' : timeStamp, 'x-signature' : clientSignature} = req.headers;
-        const {client_secret, public_key, private_key, grant_type} = req.body;
+        const { 'x-client-key': clientKey, 'x-timestamp': timeStamp, 'x-signature': clientSignature } = req.headers;
+        const { client_secret, public_key, private_key, grant_type } = req.body;
         if (!clientKey || !timeStamp || !clientSignature) {
-            throw { name: "noHeader"}
+            throw { name: "noHeader" }
         }
 
         if (!Date.parse(timeStamp)) {
-            throw { name: "invalidDate"}
+            throw { name: "invalidDate" }
         }
 
-        if ( !grant_type ) {
-            throw { name: "noBody"}
+        if (!grant_type) {
+            throw { name: "noBody" }
         }
 
         const response = await instanceAxios({
             url: '/user/clientvalidation',
             method: 'post',
             headers: {
-                'X-CLIENT-KEY' : clientKey,
-                'X-TIMESTAMP' : timeStamp ,
-                'X-SIGNATURE' : clientSignature
+                'X-CLIENT-KEY': clientKey,
+                'X-TIMESTAMP': timeStamp,
+                'X-SIGNATURE': clientSignature
             },
             data: { grant_type }
         })
@@ -39,10 +39,20 @@ const clientValidation = async (req, res, next) => {
         //     throw { name: "XSignatureMismatch"}
         // }
 
-        res.status(200).json({accessToken: response.data})
+        res.setHeader('X-CLIENT-KEY', clientKey);
+        res.setHeader('X-TIMESTAMP', timeStamp);
+
+
+        res.status(200).json(
+            {
+                accessToken: response.data,
+                tokenType: "Bearer",
+                expiresIn: "900"
+            }
+        )
     } catch (err) {
         next(err)
     }
 }
 
-module.exports = {clientValidation}
+module.exports = { clientValidation }

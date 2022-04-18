@@ -35,18 +35,18 @@ const errorHandler = (err, req, res, next) => {
     message = "Missing mandatory body parameters";
   } else if (err.name === "invalidDate") {
     statusCode = 401;
-    message = "Invalid field format header X-TIMESTAMP";
+    message = "Invalid format header X-TIMESTAMP";
   } else if (err.name === "falseClientSecret") {
     statusCode = 401;
     message = "Invalid body grant_type";
   }  else if (err.response) {
     if (err.response.data.message === "Invalid Token") {
       statusCode = 401;
-      message = "Invalid token header ";
+      message = "Invalid header X-SIGNATURE token";
     } else if (err.response.data.message === "Client not found") {
       statusCode = 401;
       message = "Invalid header X-CLIENT-KEY";
-    } else if (err.response.data.message === "Invalid body grant_type") {
+    } else if (err.response.data.message === "Invalid body grant_type value") {
       statusCode = 401;
       message = "Invalid body grant_type";
     } else if (err.response.data.message === "Header X-Signature token not match with X-CLIENT-KEY or X-TIMESTAMP") {
