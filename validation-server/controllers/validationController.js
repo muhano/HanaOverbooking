@@ -19,8 +19,12 @@ const clientValidation = async (req, res, next) => {
         const response = await instanceAxios({
             url: '/user/clientvalidation',
             method: 'post',
-            headers: {'X-CLIENT-KEY': clientKey},
-            data: { client_secret, public_key, private_key }
+            headers: {
+                'X-CLIENT-KEY' : clientKey,
+                'X-TIMESTAMP' : timeStamp ,
+                'X-SIGNATURE' : clientSignature
+            },
+            data: { client_secret, public_key, private_key, grant_type }
         })
 
         if (response.data.message === 'Client not found') {

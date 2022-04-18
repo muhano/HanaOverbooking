@@ -59,12 +59,15 @@ const userLogin = async (req, res, next) => {
 
 const clientValidation = async (req, res, next) => {
     try {
-        const clientId = req.headers['x-client-key'];
-        const {client_secret, public_key, private_key} = req.body
-        if (!clientId) {
+        const {'x-client-key' : clientId, 'x-timestamp' : timeStamp, 'x-signature' : clientSignature} = req.headers;
+        const {client_secret, public_key, private_key, grant_type} = req.body
+
+        // console.log(clientId, timeStamp, clientSignature, grant_type, '<-----------');
+
+        if (!clientId || !timeStamp || !clientSignature) {
             throw { name: "noHeader"}
         }
-        if (!client_secret || !public_key || !private_key ) {
+        if (!client_secret || !public_key || !private_key || !grant_type ) {
             throw { name: "noBody"}
         }
 

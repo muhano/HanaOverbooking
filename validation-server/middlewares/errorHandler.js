@@ -32,7 +32,7 @@ const errorHandler = (err, req, res, next) => {
     message = "Client not found"
   } else if (err.name === "noBody") {
     statusCode = 400;
-    message = "Body parameters missing";
+    message = "Missing mandatory body parameters";
   } else if (err.name === "invalidDate") {
     statusCode = 400;
     message = "Invalid field format header X-TIMESTAMP";

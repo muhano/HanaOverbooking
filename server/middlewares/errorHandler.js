@@ -26,13 +26,13 @@ const errorHandler = (err, req, res, next) => {
     message = "invalid input data type";
   } else if (err.name === "noHeader") {
     statusCode = 400;
-    message = "Header parameters missing";
+    message = "Missing mandatory header parameters";
   } else if (err.name === "clientNotFound") {
     statusCode = 404
     message = "Client not found"
   } else if (err.name === "noBody") {
     statusCode = 400;
-    message = "Body parameters missing";
+    message = "Missing mandatory body parameters";
   }
 
   res.status(statusCode).json({ message });
