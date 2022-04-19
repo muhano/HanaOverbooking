@@ -20,10 +20,10 @@ const createProcessApi = async (req, res, next) => {
         const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
         const created_at = idnDate
         const updated_at = idnDate
-        const { org_id, merchant_id, client_id, client_secret, public_key, private_key, host_name, ip_address, service_name } = req.body;
+        const { org_id, merchant_id, client_id, client_secret, public_key, private_key, host_name, ip_address, service_name, service_code } = req.body;
 
         const newProcessApi = await data_process_api.create({
-            org_id, merchant_id, client_id, client_secret, public_key, private_key, host_name, ip_address, service_name, created_at, updated_at
+            org_id, merchant_id, client_id, client_secret, public_key, private_key, host_name, ip_address, service_name, created_at, updated_at, service_code
         });
         res.status(201).json(newProcessApi);
     } catch (err) {

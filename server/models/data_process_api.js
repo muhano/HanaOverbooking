@@ -34,7 +34,15 @@ module.exports = (sequelize, DataTypes) => {
     ip_address: DataTypes.TEXT,
     service_name: DataTypes.TEXT,
     created_at: DataTypes.DATE,
-    updated_at: DataTypes.DATE
+    updated_at: DataTypes.DATE,
+    service_code: {
+      type: DataTypes.STRING,
+      validate: {
+        len: {
+          args: [4],
+        msg: "Minimum character length for service_code is 4"}
+      }
+    }
   }, {
     sequelize,
     modelName: 'data_process_api',

@@ -50,7 +50,6 @@ const clientValidation = async (req, res, next) => {
         res.setHeader('X-CLIENT-KEY', clientKey);
         res.setHeader('X-TIMESTAMP', timeStamp);
 
-
         res.status(200).json(
             {
                 accessToken: response.data,
