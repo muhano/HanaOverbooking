@@ -63,8 +63,6 @@ const clientValidation = async (req, res, next) => {
         const {'x-client-key' : clientId, 'x-timestamp' : timeStamp, 'x-signature' : clientSignature} = req.headers;
         const { grant_type} = req.body
 
-        // console.log(clientId, timeStamp, clientSignature, grant_type, '<-----------');
-
         if (!clientId || !timeStamp || !clientSignature) {
             throw { name: "noHeader"}
         }
@@ -91,11 +89,9 @@ const clientValidation = async (req, res, next) => {
         const public_key = findClient.public_key
 
         const isValidSignature = verifyClientToken(clientSignature, public_key)
-        // console.log(isValidSignature, '<----------');
 
         const validSignature = isValidSignature.split('|')
-        // console.log(timeStamp);
-        // console.log(validSignature, '<----------');
+        
         if (validSignature[0] !== clientId || validSignature[1] !== timeStamp) {
             throw { name: "XSignatureMismatch"}
         }
