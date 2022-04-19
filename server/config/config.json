@@ -3,7 +3,8 @@
     "username": "postgres",
     "password": "changeme",
     "database": "openapi",
-    "host": "10.25.88.14",
+    "host": "34.101.86.124",
+    "port": 23427,
     "dialect": "postgres"
   },
   "test": {
@@ -17,7 +18,8 @@
     "username": "postgres",
     "password": "changeme",
     "database": "openapi",
-    "host": "10.25.88.14",
+    "host": "34.101.86.124",
+    "port": 23427,
     "dialect": "postgres"
   }
 }
