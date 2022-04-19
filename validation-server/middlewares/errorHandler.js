@@ -46,7 +46,7 @@ const errorHandler = (err, req, res, next) => {
     } else if (err.response.data.message === "Client not found") {
       statusCode = 401;
       message = "Invalid header X-CLIENT-KEY";
-    } else if (err.response.data.message === "Invalid body grant_type value") {
+    } else if (err.response.data.message === "Invalid body grant_type") {
       statusCode = 401;
       message = "Invalid body grant_type";
     } else if (err.response.data.message === "Header X-Signature token not match with X-CLIENT-KEY or X-TIMESTAMP") {
