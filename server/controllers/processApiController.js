@@ -51,7 +51,7 @@ const editProcessApi = async (req, res, next) => {
         const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
         const updated_at = idnDate
         const instanceId = req.params.id
-        const { org_id, merchant_id, client_id, client_secret, public_key, private_key, host_name, ip_address, service_name } = req.body;
+        const { org_id, merchant_id, client_id, client_secret, public_key, private_key, host_name, ip_address, service_name, service_code } = req.body;
 
         const findInstance = await data_process_api.findByPk(instanceId);
         if (!findInstance) {
@@ -60,7 +60,7 @@ const editProcessApi = async (req, res, next) => {
 
         const updatedProcessApi = await data_process_api.update(
             {
-                org_id, merchant_id, client_id, client_secret, public_key, private_key, host_name, ip_address, service_name, updated_at
+                org_id, merchant_id, client_id, client_secret, public_key, private_key, host_name, ip_address, service_name, updated_at, service_code
             },
             {
                 where: { id: instanceId },
