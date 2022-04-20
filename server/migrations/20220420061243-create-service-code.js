@@ -9,6 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       service_code: {
+        unique: true,
         allowNull: false,
         type: Sequelize.STRING
       },
@@ -24,6 +25,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       path: {
+        unique: true,
         allowNull: false,
         type: Sequelize.STRING
       },
@@ -38,6 +40,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('service_codes');
+    await queryInterface.dropTable('service_code');
   }
 };

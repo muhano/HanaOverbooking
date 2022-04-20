@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     service_code: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: {msg: "Service Code already exist"},
       validate: {
         notNull: {msg: "service_code is required"},
         notEmpty: {msg: "service_code is required"}
@@ -49,6 +50,7 @@ module.exports = (sequelize, DataTypes) => {
     path: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: {msg: "Path already exist for another Service code"},
       validate: {
         notNull: {msg: "path is required"},
         notEmpty: {msg: "path is required"}
