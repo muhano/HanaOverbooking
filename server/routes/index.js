@@ -3,6 +3,7 @@ const processApi = require("./processApiRoute")
 const processCore = require("./processCoreRoute")
 const processFee = require("./processFeeRoute")
 const user = require("./userRoute")
+const serviceCode = require('./serviceCodeRoute')
 
 router.get("/", (req, res) => {
   res.send("Server Hana OverBooking with cors enabled");
@@ -12,6 +13,7 @@ router.use(user)
 router.use(processApi)
 router.use(processCore)
 router.use(processFee)
+router.use(serviceCode)
 
 
 module.exports = router

@@ -1,11 +1,11 @@
 const { user, data_process_api } = require("../models")
 const {compareHash} = require("../helpers/bcrypt")
 const { signToken, signClientToken, verifyClientToken } = require("../helpers/jwt");
-const date = new Date();
-const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
-const created_at = new Date(idnDate)
-const updated_at = new Date(idnDate)
-const jwt = require('jsonwebtoken');
+// const date = new Date();
+// const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
+// const created_at = new Date(idnDate)
+// const updated_at = new Date(idnDate)
+// const jwt = require('jsonwebtoken');
 
 
 const userRegister = async (req, res, next) => {
