@@ -12,6 +12,8 @@ import ProcessCoreEdit from "./components/ProcessCoreEdit";
 import ProcessFeeForm from "./components/ProcessFeeForm";
 import ProcessFeeEdit from "./components/ProcessFeeEdit";
 import UserForm from "./components/UserForm";
+import ServiceCodeTable from "./components/ServiceCodeTable"
+import ServiceCodeForm from "./components/ServiceCodeForm"
 
 function App() {
     return (
@@ -32,6 +34,8 @@ function App() {
                 <Route path="processfee/create" element={<ProcessFeeForm />} />
                 <Route path="processfee/edit/:id" element={<ProcessFeeEdit />} />
                 <Route path="user/create" element={<UserForm />} />
+                <Route path="servicecode" element={<ServiceCodeTable />} />
+                <Route path="servicecode/create" element={<ServiceCodeForm />} />
             </Route>
         </Routes>
     )

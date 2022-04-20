@@ -37,6 +37,7 @@ function DashboardNavbar() {
                     <Nav.Link as={Link} to="/">Data Process Api</Nav.Link>
                     <Nav.Link as={Link} to="processcore">Data Process Core</Nav.Link>
                     <Nav.Link as={Link} to="processfee">Data Process Fee</Nav.Link>
+                    <Nav.Link as={Link} to="servicecode">Service Code</Nav.Link>
                 </Nav>
                 <Nav>
                     <Nav.Link as={Link} to="user/create">Add User</Nav.Link>
