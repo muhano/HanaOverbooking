@@ -102,8 +102,10 @@ const clientValidation = async (req, res, next) => {
         };
 
         const token = signClientToken(payload);
+
+        const responseCode = `200${findClient.service_code}00`
         
-        res.status(200).json(token)
+        res.status(200).json({token, responseCode})
     } catch (err) {
         next(err)
     }

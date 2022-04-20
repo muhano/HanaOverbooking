@@ -35,24 +35,14 @@ const clientValidation = async (req, res, next) => {
             data: { grant_type }
         })
 
-        // if (response.data.message === 'Client not found') {
-        //     throw { name: "clientNotFound"}
-        // }
-
-        // if (response.data.message === 'False client secret') {
-        //     throw { name: "falseClientSecret"}
-        // }
-
-        // if (response.data.message === 'Mismatch X-signature') {
-        //     throw { name: "XSignatureMismatch"}
-        // }
-
         res.setHeader('X-CLIENT-KEY', clientKey);
         res.setHeader('X-TIMESTAMP', timeStamp);
 
         res.status(200).json(
-            {
-                accessToken: response.data,
+            {   
+                responseCode: response.data.responseCode,
+                responseMessage: "Successfull",
+                accessToken: response.data.token,
                 tokenType: "Bearer",
                 expiresIn: "900"
             }
