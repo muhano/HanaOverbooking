@@ -2,6 +2,8 @@ const instanceAxios = require('../apis/axios')
 
 const clientValidation = async (req, res, next) => {
     try {
+        const url = req.originalUrl;
+        console.log(url, '<--------');
         const { 'x-client-key': clientKey, 'x-timestamp': timeStamp, 'x-signature': clientSignature } = req.headers;
         const { grant_type } = req.body;
         if (!clientKey || !timeStamp || !clientSignature) {
