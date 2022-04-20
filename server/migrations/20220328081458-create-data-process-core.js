@@ -9,36 +9,47 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       org_name: {
+        allowNull: false,
         type: Sequelize.STRING(50)
       },
       org_id: {
-        type: Sequelize.INTEGER(20)
+        allowNull: false,
+        type: Sequelize.STRING(20)
       },
       merchant_name: {
-        type: Sequelize.INTEGER(25)
+        allowNull: false,
+        type: Sequelize.STRING(25)
       },
       merchant_id: {
-        type: Sequelize.INTEGER(20)
+        allowNull: false,
+        type: Sequelize.STRING(20)
       },
       terminal_name: {
+        allowNull: false,
         type: Sequelize.STRING(50)
       },
       terminal_id: {
-        type: Sequelize.INTEGER(20)
+        allowNull: false,
+        type: Sequelize.STRING(20)
       },
       cif: {
-        type: Sequelize.INTEGER(50)
+        allowNull: false,
+        type: Sequelize.STRING(50)
       },
       account: {
-        type: Sequelize.INTEGER(20)
+        allowNull: false,
+        type: Sequelize.STRING(20)
       },
       limit: {
-        type: Sequelize.INTEGER(20)
+        allowNull: false,
+        type: Sequelize.STRING(20)
       },
       channel: {
+        allowNull: false,
         type: Sequelize.STRING(50)
       },
       partners_id: {
+        allowNull: false,
         type: Sequelize.STRING(50)
       },
       created_at: {

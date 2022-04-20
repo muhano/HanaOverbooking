@@ -9,45 +9,59 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       reff_num: {
-        type: Sequelize.INTEGER(20)
+        allowNull: false,
+        type: Sequelize.STRING(20)
       },
       merchant_id: {
-        type: Sequelize.INTEGER(25)
+        allowNull: false,
+        type: Sequelize.STRING(25)
       },
       merchant_name: {
-        type: Sequelize.INTEGER(25)
+        allowNull: false,
+        type: Sequelize.STRING(25)
       },
       channel: {
+        allowNull: false,
         type: Sequelize.STRING(50)
       },
       bank_reff_num: {
-        type: Sequelize.INTEGER(20)
+        allowNull: false,
+        type: Sequelize.STRING(20)
       },
       transaction_time: {
+        allowNull: false,
         type: Sequelize.STRING(250)
       },
       transaction_type: {
+        allowNull: false,
         type: Sequelize.STRING(250)
       },
       amount: {
+        allowNull: false,
         type: Sequelize.STRING(250)
       },
       fee: {
-        type: Sequelize.INTEGER(20)
+        allowNull: false,
+        type: Sequelize.STRING(20)
       },
       service_name: {
+        allowNull: false,
         type: Sequelize.STRING(250)
       },
       remarks: {
+        allowNull: false,
         type: Sequelize.STRING(250)
       },
       response_code: {
-        type: Sequelize.INTEGER(20)
+        allowNull: false,
+        type: Sequelize.STRING(20)
       },
       transaction_status: {
+        allowNull: false,
         type: Sequelize.STRING(100)
       },
       transaction_desc: {
+        allowNull: false,
         type: Sequelize.STRING(100)
       },
       created_at: {

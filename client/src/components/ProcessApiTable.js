@@ -109,6 +109,7 @@ function ProcessApiTable() {
             <th>host_name</th>
             <th>ip_address</th>
             <th>service_name</th>
+            <th>service_code</th>
             <th>created_at</th>
             <th>updated_at</th>
 
@@ -140,6 +141,7 @@ function ProcessApiTable() {
               <td>{data.host_name}</td>
               <td>{data.ip_address}</td>
               <td>{data.service_name}</td>
+              <td>{data.service_code}</td>
               <td>{convertDate(data.created_at)}</td>
               <td>{convertDate(data.updated_at)}</td>
 

@@ -73,7 +73,7 @@ function ProcessFeeForm() {
                         value={dataForm.reff_num}
                         type="number"
                         onChange={handleFormInput}
-                        placeholder=""
+                        placeholder="numbers"
                     />
                 </Form.Group>
 
@@ -84,7 +84,7 @@ function ProcessFeeForm() {
                         value={dataForm.merchant_id}
                         onChange={handleFormInput}
                         type="number"
-                        placeholder=""
+                        placeholder="numbers"
                     />
                 </Form.Group>
 
@@ -95,7 +95,7 @@ function ProcessFeeForm() {
                         value={dataForm.merchant_name}
                         onChange={handleFormInput}
                         type="number"
-                        placeholder=""
+                        placeholder="numbers"
                     />
                 </Form.Group>
 
@@ -107,7 +107,7 @@ function ProcessFeeForm() {
                         onChange={handleFormInput}
                         maxLength={50}
                         type="text"
-                        placeholder=""
+                        placeholder="text"
                     />
                 </Form.Group>
 
@@ -118,7 +118,7 @@ function ProcessFeeForm() {
                         value={dataForm.bank_reff_num}
                         onChange={handleFormInput}
                         type="number"
-                        placeholder=""
+                        placeholder="numbers"
                     />
                 </Form.Group>
 
@@ -130,7 +130,7 @@ function ProcessFeeForm() {
                         onChange={handleFormInput}
                         maxLength={250}
                         type="text"
-                        placeholder=""
+                        placeholder="text"
                     />
                 </Form.Group>
 
@@ -142,7 +142,7 @@ function ProcessFeeForm() {
                         onChange={handleFormInput}
                         maxLength={250}
                         type="text"
-                        placeholder=""
+                        placeholder="text"
                     />
                 </Form.Group>
 
@@ -154,7 +154,7 @@ function ProcessFeeForm() {
                         onChange={handleFormInput}
                         maxLength={250}
                         type="text"
-                        placeholder=""
+                        placeholder="text"
                     />
                 </Form.Group>
 
@@ -165,7 +165,7 @@ function ProcessFeeForm() {
                         value={dataForm.fee}
                         onChange={handleFormInput}
                         type="number"
-                        placeholder=""
+                        placeholder="numbers"
                     />
                 </Form.Group>
 
@@ -177,7 +177,7 @@ function ProcessFeeForm() {
                         onChange={handleFormInput}
                         maxLength={250}
                         type="text"
-                        placeholder=""
+                        placeholder="text"
                     />
                 </Form.Group>
 
@@ -189,7 +189,7 @@ function ProcessFeeForm() {
                         onChange={handleFormInput}
                         maxLength={250}
                         type="text"
-                        placeholder=""
+                        placeholder="text"
                     />
                 </Form.Group>
 
@@ -200,7 +200,7 @@ function ProcessFeeForm() {
                         value={dataForm.response_code}
                         onChange={handleFormInput}
                         type="number"
-                        placeholder=""
+                        placeholder="numbers"
                     />
                 </Form.Group>
 
@@ -212,7 +212,7 @@ function ProcessFeeForm() {
                         onChange={handleFormInput}
                         maxLength={100}
                         type="text"
-                        placeholder=""
+                        placeholder="text"
                     />
                 </Form.Group>
 
@@ -224,19 +224,19 @@ function ProcessFeeForm() {
                         onChange={handleFormInput}
                         maxLength={100}
                         type="text"
-                        placeholder=""
+                        placeholder="text"
                     />
                 </Form.Group>
-
-                <Button className="mb-5" variant="primary" type="submit">
-                    Submit
-                </Button>
 
                 {error && (
                     <h6 className="mt-3" style={{ color: 'red' }}>
                         {error}
                     </h6>
                 )}
+
+                <Button className="mb-5" variant="primary" type="submit">
+                    Submit
+                </Button>
             </Form>
         </Container>
     )

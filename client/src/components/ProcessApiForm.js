@@ -1,3 +1,4 @@
+import '../styles/FormNumber.css'
 import { Container, Form, Button } from "react-bootstrap"
 import { useState } from "react"
 import axios from 'axios'
@@ -17,8 +18,10 @@ function ProcessApiForm() {
         private_key: "",
         host_name: "",
         ip_address: "",
-        service_name: ""
+        service_name: "",
+        service_code: ""
     });
+    const [error, setError] = useState();
 
     const handleFormInput = (e) => {
         const value = e.target.value;
@@ -50,6 +53,7 @@ function ProcessApiForm() {
             }
         } catch (err) {
             console.log(err);
+            setError(err.response.data.message);
         }
     };
 
@@ -65,7 +69,7 @@ function ProcessApiForm() {
                         value={dataForm.org_id}
                         type="number"
                         onChange={handleFormInput}
-                        placeholder=""
+                        placeholder="numbers"
                     />
                 </Form.Group>
 
@@ -76,7 +80,7 @@ function ProcessApiForm() {
                         value={dataForm.merchant_id}
                         onChange={handleFormInput}
                         type="number"
-                        placeholder=""
+                        placeholder="numbers"
                     />
                 </Form.Group>
 
@@ -88,7 +92,7 @@ function ProcessApiForm() {
                         onChange={handleFormInput}
                         maxLength={250}
                         type="text"
-                        placeholder=""
+                        placeholder="text"
                     />
                 </Form.Group>
 
@@ -100,7 +104,7 @@ function ProcessApiForm() {
                         onChange={handleFormInput}
                         maxLength={250}
                         type="text"
-                        placeholder=""
+                        placeholder="text"
                     />
                 </Form.Group>
 
@@ -112,7 +116,7 @@ function ProcessApiForm() {
                         onChange={handleFormInput}
                         as="textarea"
                         rows={3}
-                        placeholder=""
+                        placeholder="text"
                     />
                 </Form.Group>
 
@@ -124,7 +128,7 @@ function ProcessApiForm() {
                         onChange={handleFormInput}
                         as="textarea"
                         rows={3}
-                        placeholder=""
+                        placeholder="text"
                     />
                 </Form.Group>
 
@@ -136,7 +140,7 @@ function ProcessApiForm() {
                         onChange={handleFormInput}
                         maxLength={100}
                         type="text"
-                        placeholder=""
+                        placeholder="text"
                     />
                 </Form.Group>
 
@@ -148,7 +152,7 @@ function ProcessApiForm() {
                         onChange={handleFormInput}
                         as="textarea"
                         rows={3}
-                        placeholder=""
+                        placeholder="text"
                     />
                 </Form.Group>
 
@@ -160,9 +164,26 @@ function ProcessApiForm() {
                         onChange={handleFormInput}
                         as="textarea"
                         rows={3}
-                        placeholder=""
+                        placeholder="text"
                     />
                 </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>service_code</Form.Label>
+                    <Form.Control
+                        name="service_code"
+                        value={dataForm.service_code}
+                        onChange={handleFormInput}
+                        type="number"
+                        placeholder="numbers"
+                    />
+                </Form.Group>
+
+                {error && (
+                    <h6 className="mt-3" style={{ color: 'red' }}>
+                        {error}
+                    </h6>
+                )}
 
                 <Button className="mb-5" variant="primary" type="submit">
                     Submit

@@ -14,52 +14,101 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   data_process_core.init({
-    org_name: DataTypes.STRING,
-    org_id: {
-      type: DataTypes.INTEGER,
+    org_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        isNumeric: {msg: "Please input only numbers for org_id"}
+        notNull: {msg: "org_name is required"},
+        notEmpty: {msg: "org_name is required"}
+      }
+    },
+    org_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isNumeric: {msg: "Please input only numbers for org_id"},
+        notNull: {msg: "org_id is required"},
+        notEmpty: {msg: "org_id is required"}
       }
     },
     merchant_name: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        isNumeric: {msg: "Please input only numbers for merchant_name"}
+        isNumeric: {msg: "Please input only numbers for merchant_name"},
+        notNull: {msg: "merchant_name is required"},
+        notEmpty: {msg: "merchant_name is required"}
       }
     },
     merchant_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        isNumeric: {msg: "Please input only numbers for merchant_id"}
+        isNumeric: {msg: "Please input only numbers for merchant_id"},
+        notNull: {msg: "merchant_id is required"},
+        notEmpty: {msg: "merchant_id is required"}
       }
     },
-    terminal_name: DataTypes.STRING,
-    terminal_id: {
-      type: DataTypes.INTEGER,
+    terminal_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        isNumeric: {msg: "Please input only numbers for terminal_id"}
+        notNull: {msg: "terminal_name is required"},
+        notEmpty: {msg: "terminal_name is required"}
+      }
+    },
+    terminal_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isNumeric: {msg: "Please input only numbers for terminal_id"},
+        notNull: {msg: "terminal_id is required"},
+        notEmpty: {msg: "terminal_id is required"}
       }
     },
     cif: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        isNumeric: {msg: "Please input only numbers for cif"}
+        isNumeric: {msg: "Please input only numbers for cif"},
+        notNull: {msg: "cif is required"},
+        notEmpty: {msg: "cif is required"}
       }
     },
     account: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        isNumeric: {msg: "Please input only numbers for account"}
+        isNumeric: {msg: "Please input only numbers for account"},
+        notNull: {msg: "account is required"},
+        notEmpty: {msg: "account is required"}
       }
     },
     limit: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        isNumeric: {msg: "Please input only numbers for limit"}
+        isNumeric: {msg: "Please input only numbers for limit"},
+        notNull: {msg: "limit is required"},
+        notEmpty: {msg: "limit is required"}
       }
     },
-    channel: DataTypes.STRING,
-    partners_id: DataTypes.STRING,
+    channel: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {msg: "channel is required"},
+        notEmpty: {msg: "channel is required"}
+      }
+    },
+    partners_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {msg: "partners_id is required"},
+        notEmpty: {msg: "partners_id is required"}
+      }
+    },
     created_at: DataTypes.DATE,
     updated_at: DataTypes.DATE
   }, {

@@ -15,29 +15,88 @@ module.exports = (sequelize, DataTypes) => {
   }
   data_process_api.init({
     org_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        isNumeric: {msg: "Please input only numbers for org_id"}
+        isNumeric: {msg: "Please input only numbers for org_id"},
+        notNull: {msg: "org_id is required"},
+        notEmpty: {msg: "org_id is required"}
       }
     },
     merchant_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        isNumeric: {msg: "Please input only numbers for merchant_id"}
+        isNumeric: {msg: "Please input only numbers for merchant_id"},
+        notNull: {msg: "merchant_id is required"},
+        notEmpty: {msg: "merchant_id is required"}
       }
     },
-    client_id: DataTypes.STRING,
-    client_secret: DataTypes.STRING,
-    public_key: DataTypes.TEXT,
-    private_key: DataTypes.TEXT,
-    host_name: DataTypes.STRING,
-    ip_address: DataTypes.TEXT,
-    service_name: DataTypes.TEXT,
+    client_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {msg: "client_id is required"},
+        notEmpty: {msg: "client_id is required"}
+      }
+    },
+    client_secret: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {msg: "client_secret is required"},
+        notEmpty: {msg: "client_secret is required"}
+      }
+    },
+    public_key: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        notNull: {msg: "public_key is required"},
+        notEmpty: {msg: "public_key is required"}
+      }
+    },
+    private_key: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        notNull: {msg: "private_key is required"},
+        notEmpty: {msg: "private_key is required"}
+      }
+    },
+    host_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {msg: "host_name is required"},
+        notEmpty: {msg: "host_name is required"}
+      }
+    },
+    ip_address: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        notNull: {msg: "ip_address is required"},
+        notEmpty: {msg: "ip_address is required"}
+      }
+    },
+    service_name: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        notNull: {msg: "service_name is required"},
+        notEmpty: {msg: "service_name is required"}
+      }
+    },
     created_at: DataTypes.DATE,
     updated_at: DataTypes.DATE,
     service_code: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
+        isNumeric: {msg: "Please input only numbers for service_code"},
+        notNull: {msg: "service_code is required"},
+        notEmpty: {msg: "service_code is required"},
         len: {
           args: [4],
         msg: "Minimum character length for service_code is 4"}

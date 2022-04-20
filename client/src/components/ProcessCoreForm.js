@@ -71,7 +71,7 @@ function ProcessCoreForm() {
                         maxLength={250}
                         type="text"
                         onChange={handleFormInput}
-                        placeholder=""
+                        placeholder="text"
                     />
                 </Form.Group>
 
@@ -82,7 +82,7 @@ function ProcessCoreForm() {
                         value={dataForm.org_id}
                         onChange={handleFormInput}
                         type="number"
-                        placeholder=""
+                        placeholder="numbers"
                     />
                 </Form.Group>
 
@@ -93,7 +93,7 @@ function ProcessCoreForm() {
                         value={dataForm.merchant_name}
                         onChange={handleFormInput}
                         type="number"
-                        placeholder=""
+                        placeholder="numbers"
                     />
                 </Form.Group>
 
@@ -104,7 +104,7 @@ function ProcessCoreForm() {
                         value={dataForm.merchant_id}
                         onChange={handleFormInput}
                         type="number"
-                        placeholder=""
+                        placeholder="numbers"
                     />
                 </Form.Group>
 
@@ -116,7 +116,7 @@ function ProcessCoreForm() {
                         onChange={handleFormInput}
                         maxLength={50}
                         type="text"
-                        placeholder=""
+                        placeholder="text"
                     />
                 </Form.Group>
 
@@ -127,7 +127,7 @@ function ProcessCoreForm() {
                         value={dataForm.terminal_id}
                         onChange={handleFormInput}
                         type="number"
-                        placeholder=""
+                        placeholder="numbers"
                     />
                 </Form.Group>
 
@@ -138,7 +138,7 @@ function ProcessCoreForm() {
                         value={dataForm.cif}
                         onChange={handleFormInput}
                         type="number"
-                        placeholder=""
+                        placeholder="numbers"
                     />
                 </Form.Group>
 
@@ -149,7 +149,7 @@ function ProcessCoreForm() {
                         value={dataForm.account}
                         onChange={handleFormInput}
                         type="number"
-                        placeholder=""
+                        placeholder="numbers"
                     />
                 </Form.Group>
 
@@ -160,7 +160,7 @@ function ProcessCoreForm() {
                         value={dataForm.limit}
                         onChange={handleFormInput}
                         type="number"
-                        placeholder=""
+                        placeholder="numbers"
                     />
                 </Form.Group>
 
@@ -172,7 +172,7 @@ function ProcessCoreForm() {
                         onChange={handleFormInput}
                         maxLength={50}
                         type="text"
-                        placeholder=""
+                        placeholder="text"
                     />
                 </Form.Group>
 
@@ -184,19 +184,19 @@ function ProcessCoreForm() {
                         onChange={handleFormInput}
                         maxLength={50}
                         type="text"
-                        placeholder=""
+                        placeholder="text"
                     />
                 </Form.Group>
-
-                <Button className="mb-5" variant="primary" type="submit">
-                    Submit
-                </Button>
 
                 {error && (
                     <h6 className="mt-3" style={{ color: 'red' }}>
                         {error}
                     </h6>
                 )}
+
+                <Button className="mb-5" variant="primary" type="submit">
+                    Submit
+                </Button>
             </Form>
         </Container>
     )

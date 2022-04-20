@@ -26,6 +26,7 @@ function ProcessFeeEdit() {
         transaction_desc: ""
     });
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState();
 
     useEffect(() => {
         async function fetchData() {
@@ -95,6 +96,7 @@ function ProcessFeeEdit() {
             }
         } catch (err) {
             console.log(err);
+            setError(err.response.data.message);
         }
     };
 
@@ -272,15 +274,15 @@ function ProcessFeeEdit() {
                     />
                 </Form.Group>
 
-                <Button className="mb-5" variant="primary" type="submit">
-                    Submit
-                </Button>
-
-                {/* {error && (
+                {error && (
                     <h6 className="mt-3" style={{ color: 'red' }}>
                         {error}
                     </h6>
-                )} */}
+                )}
+
+                <Button className="mb-5" variant="primary" type="submit">
+                    Submit
+                </Button>
             </Form>
         </Container>
     )

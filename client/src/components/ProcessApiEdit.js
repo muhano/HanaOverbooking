@@ -19,9 +19,11 @@ function ProcessApiEdit() {
         private_key: "",
         host_name: "",
         ip_address: "",
-        service_name: ""
+        service_name: "",
+        service_code: ""
     });
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState();
 
     useEffect(() => {
         async function fetchData() {
@@ -43,7 +45,8 @@ function ProcessApiEdit() {
                     private_key: result.private_key,
                     host_name: result.host_name,
                     ip_address: result.ip_address,
-                    service_name: result.service_name
+                    service_name: result.service_name,
+                    service_code: result.service_code
                 })
                 setLoading(false);
 
@@ -86,6 +89,7 @@ function ProcessApiEdit() {
             }
         } catch (err) {
             console.log(err);
+            setError(err.response.data.message);
         }
     };
 
@@ -209,6 +213,23 @@ function ProcessApiEdit() {
                         placeholder=""
                     />
                 </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>service_code</Form.Label>
+                    <Form.Control
+                        name="service_code"
+                        value={dataForm.service_code}
+                        onChange={handleFormInput}
+                        type="number"
+                        placeholder="numbers"
+                    />
+                </Form.Group>
+
+                {error && (
+                    <h6 className="mt-3" style={{ color: 'red' }}>
+                        {error}
+                    </h6>
+                )}
 
                 <Button className="mb-5" variant="primary" type="submit">
                     Submit
