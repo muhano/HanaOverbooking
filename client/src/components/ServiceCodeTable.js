@@ -114,7 +114,7 @@ function ServiceCodeTable() {
                             <th>{index + 1}</th>
                             <td>
                                 <Button
-                                    onClick={() => navigate(`processapi/edit/${data.id}`)}
+                                    onClick={() => navigate(`edit/${data.id}`)}
                                     className="me-2"
                                     variant="primary"
                                 >

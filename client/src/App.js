@@ -14,6 +14,7 @@ import ProcessFeeEdit from "./components/ProcessFeeEdit";
 import UserForm from "./components/UserForm";
 import ServiceCodeTable from "./components/ServiceCodeTable"
 import ServiceCodeForm from "./components/ServiceCodeForm"
+import ServiceCodeEdit from "./components/ServiceCodeEdit"
 
 function App() {
     return (
@@ -36,6 +37,7 @@ function App() {
                 <Route path="user/create" element={<UserForm />} />
                 <Route path="servicecode" element={<ServiceCodeTable />} />
                 <Route path="servicecode/create" element={<ServiceCodeForm />} />
+                <Route path="servicecode/edit/:id" element={<ServiceCodeEdit />} />
             </Route>
         </Routes>
     )
