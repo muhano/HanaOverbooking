@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: {msg: "Service Code already exist"},
       validate: {
+        isNumeric: {msg: "Please input only numbers for service_code"},
         notNull: {msg: "service_code is required"},
         notEmpty: {msg: "service_code is required"}
       }
