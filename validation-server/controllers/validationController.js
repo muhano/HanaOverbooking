@@ -1,13 +1,27 @@
 const instanceAxios = require('../apis/axios')
-const { service_code : serviceCode } = require("../models")
+const { service_code } = require("../models")
 
 const clientValidation = async (req, res, next) => {
     try {
-        const services = await serviceCode.findAll();
-        console.log(services);
+        // const services = await serviceCode.findAll();
+        // console.log(services);
 
         const url = req.originalUrl;
-        // console.log(url, '<--------');
+        const path = `../{version}${url}`
+        // console.log(path, '<--------');
+
+        const serviceCode = await service_code.findOne({ where : { path } })
+
+        if (!serviceCode) {
+            throw { name: "noServiceCode" }
+        }
+
+        const code = serviceCode.service_code
+        req.user = {
+            service_code: code
+        }
+        // console.log(req.user, '<-----');
+
         const { 'x-client-key': clientKey, 'x-timestamp': timeStamp, 'x-signature': clientSignature } = req.headers;
         const { grant_type } = req.body;
         if (!clientKey || !timeStamp || !clientSignature) {
@@ -46,9 +60,9 @@ const clientValidation = async (req, res, next) => {
 
         res.status(200).json(
             {   
-                responseCode: response.data.responseCode,
+                responseCode: `200${code}00`,
                 responseMessage: "Successfull",
-                accessToken: response.data.token,
+                accessToken: response.data,
                 tokenType: "Bearer",
                 expiresIn: "900"
             }
