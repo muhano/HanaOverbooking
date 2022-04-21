@@ -1,0 +1,25 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "changeme",
+    "database": "openapi",
+    "host": "34.101.86.124",
+    "port": 23427,
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "changeme",
+    "database": "openapi",
+    "host": "34.101.86.124",
+    "port": 23427,
+    "dialect": "postgres"
+  }
+}

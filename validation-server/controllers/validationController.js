@@ -1,9 +1,13 @@
 const instanceAxios = require('../apis/axios')
+const { service_code : serviceCode } = require("../models")
 
 const clientValidation = async (req, res, next) => {
     try {
+        const services = await serviceCode.findAll();
+        console.log(services);
+
         const url = req.originalUrl;
-        console.log(url, '<--------');
+        // console.log(url, '<--------');
         const { 'x-client-key': clientKey, 'x-timestamp': timeStamp, 'x-signature': clientSignature } = req.headers;
         const { grant_type } = req.body;
         if (!clientKey || !timeStamp || !clientSignature) {
