@@ -47,17 +47,17 @@ const errorHandler = (err, req, res, next) => {
     if (err.response.data.message === "Invalid Token") {
       caseCode = "01"
       statusCode = 401;
-      message = "Invalid header X-SIGNATURE token";
+      message = "Unauthorized. Invalid header X-SIGNATURE token";
     } else if (err.response.data.message === "Client not found") {
       statusCode = 401;
-      message = "Invalid header X-CLIENT-KEY";
+      message = "Unauthorized. Invalid header X-CLIENT-KEY";
     } else if (err.response.data.message === "Invalid body grant_type") {
       statusCode = 401;
-      message = "Invalid body grant_type";
+      message = "Unauthorized. Invalid body grant_type";
     } else if (err.response.data.message === "Header X-Signature token not match with X-CLIENT-KEY or X-TIMESTAMP") {
       caseCode = "01"
       statusCode = 401;
-      message = "Header X-Signature token not match with X-CLIENT-KEY or X-TIMESTAMP";
+      message = "Unauthorized. Header X-Signature token not match with X-CLIENT-KEY or X-TIMESTAMP";
     }
   } else if (err.name === "XSignatureMismatch") {
     statusCode = 401;
