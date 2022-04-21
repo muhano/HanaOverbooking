@@ -97,8 +97,7 @@ const clientValidation = async (req, res, next) => {
         }
 
         const payload = {
-            client_id: findClient.client_id,
-            service_name: findClient.service_name
+            client_id: findClient.client_id
         };
 
         const token = signClientToken(payload);

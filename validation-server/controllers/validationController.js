@@ -3,12 +3,8 @@ const { service_code } = require("../models")
 
 const clientValidation = async (req, res, next) => {
     try {
-        // const services = await serviceCode.findAll();
-        // console.log(services);
-
         const url = req.originalUrl;
         const path = `../{version}${url}`
-        // console.log(path, '<--------');
 
         const serviceCode = await service_code.findOne({ where : { path } })
 
@@ -20,7 +16,6 @@ const clientValidation = async (req, res, next) => {
         req.user = {
             service_code: code
         }
-        // console.log(req.user, '<-----');
 
         const { 'x-client-key': clientKey, 'x-timestamp': timeStamp, 'x-signature': clientSignature } = req.headers;
         const { grant_type } = req.body;

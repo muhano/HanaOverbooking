@@ -17,6 +17,7 @@ module.exports = {
         type: Sequelize.STRING(20)
       },
       client_id: {
+        unique: true,
         allowNull: false,
         type: Sequelize.STRING(250)
       },
