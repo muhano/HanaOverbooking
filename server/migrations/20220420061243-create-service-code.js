@@ -18,6 +18,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       version: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       http_method: {
