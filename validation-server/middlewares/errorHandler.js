@@ -75,9 +75,12 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "falseAuthorization") {
     statusCode = 401;
     message = "Unauthorized. False Authorization type, please select Authorization type Bearer Token"
+  } else if (err.name === "falsePath") {
+    statusCode = 401;
+    message = `Unauthorized. False path for service code ${req.user.service_code}`
   }
 
-  // console.log(req.user);
+
   let service_code = undefined
   if (req.user) {
     service_code = req.user.service_code

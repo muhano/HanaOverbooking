@@ -22,12 +22,13 @@ const userAuthentication = async (req, res, next) => {
       throw { name: "JsonWebTokenError" };
     }
 
+
     req.user = {
+      ... req.user,
       client_id: clientData.client_id,
       service_name: clientData.service_name,
     };
 
-    // console.log(req.user, '<-----');
 
     next();
   } catch (err) {
