@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: {msg: "Name already exist in other Service Code"},
       validate: {
         notNull: {msg: "name is required"},
         notEmpty: {msg: "name is required"}
