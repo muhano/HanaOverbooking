@@ -32,7 +32,7 @@ const inquiryAuthorization =   async (req, res, next) => {
     }
 }
 
-const fundtransferAuthorization =   async (req, res, next) => {
+const fundTransferAuthorization =   async (req, res, next) => {
     try {
         const findCode = await serviceCode.findOne({where: {name : 'Service Fund Transfer'}})
         if (!findCode) {
@@ -56,4 +56,32 @@ const fundtransferAuthorization =   async (req, res, next) => {
     }
 }
 
-module.exports = {inquiryAuthorization, fundtransferAuthorization}
+const checkStatusAuthorization = async (req, res, next) => {
+    try {
+        const findCode = await serviceCode.findOne({where: {name : 'Check Status'}})
+        if (!findCode) {
+            throw {name: 'noServiceCode'}
+        }
+        req.user = {
+            ... req.user,
+            service_code : findCode.service_code
+        }
+
+        const {service_name} = req.user
+        const serviceArray = service_name.split(', ')
+
+        if (!serviceArray.includes(findCode.service_code)) {
+            throw {name: 'noServicePrivilege'}
+        }
+
+        next()
+    } catch (err) {
+        next(err)
+    }
+}
+
+module.exports = {
+    inquiryAuthorization, 
+    fundTransferAuthorization, 
+    checkStatusAuthorization
+}

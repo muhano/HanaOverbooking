@@ -4,15 +4,12 @@ const { urlTrimmer } = require("../helpers/urlTrimmer")
 const inquiry = async (req, res, next) => {
     try {
         const url = req.originalUrl;
-
         const customUrl = urlTrimmer(url)
-
         const path = `../{version}/${customUrl}`
         const serviceCode = await service_code.findOne({ where: { path } })
         if (!serviceCode) {
-            throw { name: "noServiceCode" }
+            throw { name: "falsePath" }
         }
-
 
         res.status(200).json({
             responseCode: `200${req.user.service_code}00`,
@@ -25,18 +22,13 @@ const inquiry = async (req, res, next) => {
 
 const fundTransfer = async (req, res, next) => {
     try {
-        // res.send('transfer fund ,-------------')
         const url = req.originalUrl;
-
         const customUrl = urlTrimmer(url)
-
         const path = `../{version}/${customUrl}`
-        // console.log(path, '<-----');
         const serviceCode = await service_code.findOne({ where: { path } })
         if (!serviceCode) {
             throw { name: "falsePath" }
         }
-
 
         res.status(200).json({
             responseCode: `200${req.user.service_code}00`,
@@ -47,4 +39,23 @@ const fundTransfer = async (req, res, next) => {
     }
 }
 
-module.exports = { inquiry, fundTransfer }
+const checkStatus = async (req, res, next) => {
+    try {
+        const url = req.originalUrl;
+        const customUrl = urlTrimmer(url)
+        const path = `../{version}/${customUrl}`
+        const serviceCode = await service_code.findOne({ where: { path } })
+        if (!serviceCode) {
+            throw { name: "falsePath" }
+        }
+
+        res.status(200).json({
+            responseCode: `200${req.user.service_code}00`,
+            responseMessage: 'Request Service Check Status success',
+        })
+    } catch (err) {
+        next(err)
+    }
+}
+
+module.exports = { inquiry, fundTransfer, checkStatus }
