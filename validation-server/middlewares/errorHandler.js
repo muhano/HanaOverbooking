@@ -18,7 +18,7 @@ const errorHandler = (err, req, res, next) => {
       message = "Invalid email/password"
   } else if (err.name === "JsonWebTokenError") {
     statusCode = 401
-    message = "Invalid token"
+    message = "Unauthorized. Invalid token"
   } else if (err.name === "notFound") {
     statusCode = 404
     message = "Instance not found"
@@ -65,6 +65,10 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "noServiceCode") {
     statusCode = 500;
     message = "Service code not found"
+  } else if (err.name === "TokenExpiredError") {
+    caseCode = "01"
+    statusCode = 401;
+    message = "Unauthorized. Token expired, please request new token"
   }
 
   // console.log(req.user);
