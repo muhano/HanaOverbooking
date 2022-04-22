@@ -58,4 +58,23 @@ const checkStatus = async (req, res, next) => {
     }
 }
 
-module.exports = { inquiry, fundTransfer, checkStatus }
+const history = async (req, res, next) => {
+    try {
+        const url = req.originalUrl;
+        const customUrl = urlTrimmer(url)
+        const path = `../{version}/${customUrl}`
+        const serviceCode = await service_code.findOne({ where: { path } })
+        if (!serviceCode) {
+            throw { name: "falsePath" }
+        }
+
+        res.status(200).json({
+            responseCode: `200${req.user.service_code}00`,
+            responseMessage: 'Request Service History success',
+        })
+    } catch (err) {
+        next(err)
+    }
+}
+
+module.exports = { inquiry, fundTransfer, checkStatus, history }

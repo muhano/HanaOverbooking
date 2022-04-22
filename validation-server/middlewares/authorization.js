@@ -80,8 +80,33 @@ const checkStatusAuthorization = async (req, res, next) => {
     }
 }
 
+const historyAuthorization = async (req, res, next) => {
+    try {
+        const findCode = await serviceCode.findOne({where: {name : 'Service History'}})
+        if (!findCode) {
+            throw {name: 'noServiceCode'}
+        }
+        req.user = {
+            ... req.user,
+            service_code : findCode.service_code
+        }
+
+        const {service_name} = req.user
+        const serviceArray = service_name.split(', ')
+
+        if (!serviceArray.includes(findCode.service_code)) {
+            throw {name: 'noServicePrivilege'}
+        }
+
+        next()
+    } catch (err) {
+       next(err) 
+    }
+}
+
 module.exports = {
     inquiryAuthorization, 
     fundTransferAuthorization, 
-    checkStatusAuthorization
+    checkStatusAuthorization,
+    historyAuthorization
 }

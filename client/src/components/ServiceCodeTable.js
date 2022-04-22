@@ -89,7 +89,7 @@ function ServiceCodeTable() {
 
 
     return (
-        <Container className="mt-3">
+        <Container className="mt-3 mb-5">
             <h5>Service Code</h5>
             <Link to="create">
                 <Button variant="success">Create Service Code</Button>
