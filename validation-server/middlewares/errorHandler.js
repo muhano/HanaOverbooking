@@ -72,6 +72,9 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "noServicePrivilege") {
     statusCode = 401;
     message = "Unauthorized. Client don't have privilige to access service"
+  } else if (err.name === "falseAuthorization") {
+    statusCode = 401;
+    message = "Unauthorized. False Authorization type, please select Authorization type Bearer Token"
   }
 
   // console.log(req.user);
