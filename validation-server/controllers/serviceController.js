@@ -21,7 +21,7 @@ const inquiry = async (req, res, next) => {
         }
         
 
-        res.status(200).json('Request success')
+        res.status(200).json('Request Service Inquiry success')
     } catch (err) {
         next(err)
     }

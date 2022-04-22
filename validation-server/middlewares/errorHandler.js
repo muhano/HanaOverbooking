@@ -69,6 +69,9 @@ const errorHandler = (err, req, res, next) => {
     caseCode = "01"
     statusCode = 401;
     message = "Unauthorized. Token expired, please request new token"
+  } else if (err.name === "noServicePrivilege") {
+    statusCode = 401;
+    message = "Unauthorized. Client don't have privilige to access service"
   }
 
   // console.log(req.user);
