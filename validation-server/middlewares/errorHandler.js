@@ -17,6 +17,7 @@ const errorHandler = (err, req, res, next) => {
       statusCode = 401
       message = "Invalid email/password"
   } else if (err.name === "JsonWebTokenError") {
+    caseCode = '01'
     statusCode = 401
     message = "Unauthorized. Invalid token"
   } else if (err.name === "notFound") {

@@ -4,27 +4,22 @@ const {service_code : serviceCode} = require('../models/index')
 
 const inquiryAuthorization =   async (req, res, next) => {
     try {
-        // console.log(req.user, '<------------');
         const findCode = await serviceCode.findOne({where: {name : 'Service Inquiry'}})
         if (!findCode) {
             throw {name: 'noServiceCode'}
         }
-        // req.user.service_code = findCode.service_code
+        
         req.user = {
             ... req.user,
             service_code : findCode.service_code
         }
 
-        // router.use(clientAuthentication)
+        // const {service_name} = req.user
+        // const serviceArray = service_name.split(', ')
 
-        console.log(req.user, '<----');
-
-        const {service_name} = req.user
-        const serviceArray = service_name.split(', ')
-
-        if (!serviceArray.includes(findCode.service_code)) {
-            throw {name: 'noServicePrivilege'}
-        }
+        // if (!serviceArray.includes(findCode.service_code)) {
+        //     throw {name: 'noServicePrivilege'}
+        // }
 
         next()
     } catch (err) {
@@ -43,12 +38,12 @@ const fundTransferAuthorization =   async (req, res, next) => {
             service_code : findCode.service_code
         }
 
-        const {service_name} = req.user
-        const serviceArray = service_name.split(', ')
+        // const {service_name} = req.user
+        // const serviceArray = service_name.split(', ')
 
-        if (!serviceArray.includes(findCode.service_code)) {
-            throw {name: 'noServicePrivilege'}
-        }
+        // if (!serviceArray.includes(findCode.service_code)) {
+        //     throw {name: 'noServicePrivilege'}
+        // }
 
         next()
     } catch (err) {
@@ -67,12 +62,12 @@ const checkStatusAuthorization = async (req, res, next) => {
             service_code : findCode.service_code
         }
 
-        const {service_name} = req.user
-        const serviceArray = service_name.split(', ')
+        // const {service_name} = req.user
+        // const serviceArray = service_name.split(', ')
 
-        if (!serviceArray.includes(findCode.service_code)) {
-            throw {name: 'noServicePrivilege'}
-        }
+        // if (!serviceArray.includes(findCode.service_code)) {
+        //     throw {name: 'noServicePrivilege'}
+        // }
 
         next()
     } catch (err) {
@@ -91,12 +86,12 @@ const historyAuthorization = async (req, res, next) => {
             service_code : findCode.service_code
         }
 
-        const {service_name} = req.user
-        const serviceArray = service_name.split(', ')
+        // const {service_name} = req.user
+        // const serviceArray = service_name.split(', ')
 
-        if (!serviceArray.includes(findCode.service_code)) {
-            throw {name: 'noServicePrivilege'}
-        }
+        // if (!serviceArray.includes(findCode.service_code)) {
+        //     throw {name: 'noServicePrivilege'}
+        // }
 
         next()
     } catch (err) {
