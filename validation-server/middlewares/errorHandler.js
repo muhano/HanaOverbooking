@@ -32,7 +32,7 @@ const errorHandler = (err, req, res, next) => {
     message = "Missing mandatory header parameters";
   } else if (err.name === "clientNotFound") {
     statusCode = 401
-    message = "Invalid header X-CLIENT-KEY"
+    message = "Unauthorized. Invalid header X-CLIENT-KEY"
   } else if (err.name === "noBody") {
     caseCode = "02"
     statusCode = 400;
@@ -43,7 +43,7 @@ const errorHandler = (err, req, res, next) => {
     message = "Invalid format header X-TIMESTAMP";
   } else if (err.name === "falseClientSecret") {
     statusCode = 401;
-    message = "Invalid body grant_type";
+    message = "Unauthorized. Invalid body grant_type";
   }  else if (err.response) {
     if (err.response.data.message === "Invalid Token") {
       caseCode = "01"
@@ -61,8 +61,9 @@ const errorHandler = (err, req, res, next) => {
       message = "Unauthorized. Header X-Signature token not match with X-CLIENT-KEY or X-TIMESTAMP";
     }
   } else if (err.name === "XSignatureMismatch") {
+    caseCode = "01"
     statusCode = 401;
-    message = "Header X-Signature token not match with X-CLIENT-KEY or X-TIMESTAMP";
+    message = "Unauthorized. Header X-Signature token not match with X-CLIENT-KEY or X-TIMESTAMP";
   } else if (err.name === "noServiceCode") {
     statusCode = 500;
     message = "Service code not found"
@@ -79,8 +80,7 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "falsePath") {
     statusCode = 401;
     message = `Unauthorized. False path for service code ${req.user.service_code}`
-  }
-
+  } 
 
   let service_code = undefined
   if (req.user) {
