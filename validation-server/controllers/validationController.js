@@ -30,7 +30,6 @@ const clientValidation = async (req, res, next) => {
 
         const dateParsed = new Date(Date.parse(timeStamp))
         const isoDate = dateParsed.toISOString()
-
         if (isoDate !== timeStamp) {
             throw { name: "invalidDate" }
         }
@@ -38,6 +37,8 @@ const clientValidation = async (req, res, next) => {
         if (!grant_type) {
             throw { name: "noBody" }
         }
+
+        console.log("disini <-------------");
 
         const findClient = await data_process_api.findOne({
             where: { client_id : clientKey }
@@ -51,6 +52,7 @@ const clientValidation = async (req, res, next) => {
         }
 
         const public_key = findClient.public_key
+        // console.log(public_key, '<-----');
 
         const isValidSignature = verifyClientToken(clientSignature, public_key)
 

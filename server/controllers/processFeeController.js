@@ -2,7 +2,7 @@ const { data_process_fee } = require("../models/index.js")
 
 const getProcessFee = async (req, res, next) => {
     try {
-        const response = await data_process_fee.findAll();
+        const response = await data_process_fee.findAll({ order: [['id', 'ASC']] });
         res.status(200).json(response);
     } catch (err) {
         next(err);

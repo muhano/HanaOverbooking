@@ -2,7 +2,7 @@ const { data_process_core } = require("../models/index.js")
 
 const getProcessCore = async (req, res, next) => {
     try {
-        const response = await data_process_core.findAll();
+        const response = await data_process_core.findAll({ order: [['id', 'ASC']] });
         res.status(200).json(response);
     } catch (err) {
         next(err);

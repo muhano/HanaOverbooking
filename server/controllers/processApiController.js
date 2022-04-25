@@ -7,7 +7,7 @@ const { data_process_api } = require("../models/index.js")
 
 const getProcessApi = async (req, res, next) => {
     try {
-        const response = await data_process_api.findAll();
+        const response = await data_process_api.findAll({ order: [['id', 'ASC']] });
         res.status(200).json(response);
     } catch (err) {
         next(err);

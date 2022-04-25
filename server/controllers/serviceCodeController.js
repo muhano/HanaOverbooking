@@ -2,7 +2,7 @@ const { service_code : serviceCode } = require("../models")
 
 const getServiceCode = async (req, res, next) => {
     try {
-        const response = await serviceCode.findAll();
+        const response = await serviceCode.findAll({ order: [['id', 'ASC']] });
         res.status(200).json(response)
     } catch (err) {
         next(err)
