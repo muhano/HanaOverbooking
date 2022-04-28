@@ -6,6 +6,7 @@ const clientValidation = async (req, res, next) => {
     try {
         const url = req.originalUrl;
         const path = `../{version}${url}`
+        console.log(path, '<--------');
 
         const serviceCode = await service_code.findOne({ where : { path } })
 
@@ -37,8 +38,6 @@ const clientValidation = async (req, res, next) => {
         if (!grant_type) {
             throw { name: "noBody" }
         }
-
-        console.log("disini <-------------");
 
         const findClient = await data_process_api.findOne({
             where: { client_id : clientKey }
