@@ -6,7 +6,6 @@ const clientValidation = async (req, res, next) => {
     try {
         const url = req.originalUrl;
         const path = `../{version}${url}`
-        console.log(path, '<--------');
 
         const serviceCode = await service_code.findOne({ where : { path } })
 
