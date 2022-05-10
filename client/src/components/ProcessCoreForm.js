@@ -59,6 +59,9 @@ function ProcessCoreForm() {
         }
     };
 
+    const removeScroll = (e) => e.target.blur()
+    const removeSymbols = (evt) => (evt.key === 'e' || evt.key === '+' || evt.key === '-' || evt.key === '.') && evt.preventDefault()
+
     return (
         <Container>
             <h5 className="mt-3">Create New Data Process Core</h5>
@@ -81,6 +84,8 @@ function ProcessCoreForm() {
                         name="org_id"
                         value={dataForm.org_id}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder="numbers"
                     />
@@ -92,6 +97,8 @@ function ProcessCoreForm() {
                         name="merchant_name"
                         value={dataForm.merchant_name}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder="numbers"
                     />
@@ -103,6 +110,8 @@ function ProcessCoreForm() {
                         name="merchant_id"
                         value={dataForm.merchant_id}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder="numbers"
                     />
@@ -126,6 +135,8 @@ function ProcessCoreForm() {
                         name="terminal_id"
                         value={dataForm.terminal_id}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder="numbers"
                     />
@@ -137,6 +148,8 @@ function ProcessCoreForm() {
                         name="cif"
                         value={dataForm.cif}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder="numbers"
                     />
@@ -159,6 +172,8 @@ function ProcessCoreForm() {
                         name="limit"
                         value={dataForm.limit}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder="numbers"
                     />

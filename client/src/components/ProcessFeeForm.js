@@ -62,6 +62,9 @@ function ProcessFeeForm() {
         }
     };
 
+    const removeScroll = (e) => e.target.blur()
+    const removeSymbols = (evt) => (evt.key === 'e' || evt.key === '+' || evt.key === '-' || evt.key === '.') && evt.preventDefault()
+
     return (
         <Container>
             <h5 className="mt-3">Create New Data Process Fee</h5>
@@ -73,6 +76,8 @@ function ProcessFeeForm() {
                         value={dataForm.reff_num}
                         type="number"
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         placeholder="numbers"
                     />
                 </Form.Group>
@@ -83,6 +88,8 @@ function ProcessFeeForm() {
                         name="merchant_id"
                         value={dataForm.merchant_id}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder="numbers"
                     />
@@ -94,6 +101,8 @@ function ProcessFeeForm() {
                         name="merchant_name"
                         value={dataForm.merchant_name}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder="numbers"
                     />
@@ -117,6 +126,8 @@ function ProcessFeeForm() {
                         name="bank_reff_num"
                         value={dataForm.bank_reff_num}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder="numbers"
                     />
@@ -164,6 +175,8 @@ function ProcessFeeForm() {
                         name="fee"
                         value={dataForm.fee}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder="numbers"
                     />
@@ -199,6 +212,8 @@ function ProcessFeeForm() {
                         name="response_code"
                         value={dataForm.response_code}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder="numbers"
                     />

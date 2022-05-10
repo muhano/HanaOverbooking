@@ -57,6 +57,8 @@ function ProcessApiForm() {
         }
     };
 
+    const removeScroll = (e) => e.target.blur()
+    const removeSymbols = (evt) => (evt.key === 'e' || evt.key === '+' || evt.key === '-' || evt.key === '.') && evt.preventDefault()
 
     return (
         <Container>
@@ -69,6 +71,8 @@ function ProcessApiForm() {
                         value={dataForm.org_id}
                         type="number"
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         placeholder="numbers"
                     />
                 </Form.Group>
@@ -79,6 +83,8 @@ function ProcessApiForm() {
                         name="merchant_id"
                         value={dataForm.merchant_id}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder="numbers"
                     />
@@ -174,6 +180,8 @@ function ProcessApiForm() {
                         name="service_code"
                         value={dataForm.service_code}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder="numbers"
                     />

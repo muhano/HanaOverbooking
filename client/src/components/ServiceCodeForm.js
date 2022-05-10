@@ -51,6 +51,9 @@ function ServiceCodeForm() {
         }
     };
 
+    const removeScroll = (e) => e.target.blur()
+    const removeSymbols = (evt) => (evt.key === 'e' || evt.key === '+' || evt.key === '-' || evt.key === '.') && evt.preventDefault()
+
     return (
         <Container>
             <h5 className="mt-3">Create New Service Code</h5>
@@ -62,6 +65,8 @@ function ServiceCodeForm() {
                         value={dataForm.service_code}
                         type="number"
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         placeholder="numbers"
                     />
                 </Form.Group>

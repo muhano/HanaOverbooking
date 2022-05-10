@@ -82,6 +82,9 @@ function ServiceCodeEdit() {
         }
     };
 
+    const removeScroll = (e) => e.target.blur()
+    const removeSymbols = (evt) => (evt.key === 'e' || evt.key === '+' || evt.key === '-' || evt.key === '.') && evt.preventDefault()
+
     if (loading) {
         return (
             <Container className="mt-3">
@@ -101,6 +104,8 @@ function ServiceCodeEdit() {
                         value={dataForm.service_code}
                         type="number"
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         placeholder="numbers"
                     />
                 </Form.Group>

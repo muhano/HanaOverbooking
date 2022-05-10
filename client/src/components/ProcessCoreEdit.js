@@ -94,6 +94,9 @@ function ProcessCoreEdit() {
         }
     };
 
+    const removeScroll = (e) => e.target.blur()
+    const removeSymbols = (evt) => (evt.key === 'e' || evt.key === '+' || evt.key === '-' || evt.key === '.') && evt.preventDefault()
+
     if (loading) {
         return (
             <Container className="mt-3">
@@ -127,6 +130,8 @@ function ProcessCoreEdit() {
                         name="org_id"
                         value={dataForm.org_id}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder=""
                     />
@@ -138,6 +143,8 @@ function ProcessCoreEdit() {
                         name="merchant_name"
                         value={dataForm.merchant_name}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder=""
                     />
@@ -149,6 +156,8 @@ function ProcessCoreEdit() {
                         name="merchant_id"
                         value={dataForm.merchant_id}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder=""
                     />
@@ -172,6 +181,8 @@ function ProcessCoreEdit() {
                         name="terminal_id"
                         value={dataForm.terminal_id}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder=""
                     />
@@ -183,6 +194,8 @@ function ProcessCoreEdit() {
                         name="cif"
                         value={dataForm.cif}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder=""
                     />
@@ -194,6 +207,8 @@ function ProcessCoreEdit() {
                         name="account"
                         value={dataForm.account}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder=""
                     />
@@ -205,6 +220,8 @@ function ProcessCoreEdit() {
                         name="limit"
                         value={dataForm.limit}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder=""
                     />

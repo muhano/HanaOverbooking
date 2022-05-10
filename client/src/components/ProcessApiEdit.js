@@ -93,6 +93,9 @@ function ProcessApiEdit() {
         }
     };
 
+    const removeScroll = (e) => e.target.blur()
+    const removeSymbols = (evt) => (evt.key === 'e' || evt.key === '+' || evt.key === '-' || evt.key === '.') && evt.preventDefault()
+
     if (loading) {
         return (
             <Container className="mt-3">
@@ -115,6 +118,8 @@ function ProcessApiEdit() {
                         value={dataForm.org_id}
                         type="number"
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         placeholder=""
                     />
                 </Form.Group>
@@ -125,6 +130,8 @@ function ProcessApiEdit() {
                         name="merchant_id"
                         value={dataForm.merchant_id}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder=""
                     />
@@ -220,6 +227,8 @@ function ProcessApiEdit() {
                         name="service_code"
                         value={dataForm.service_code}
                         onChange={handleFormInput}
+                        onWheel={removeScroll}
+                        onKeyDown={removeSymbols}
                         type="number"
                         placeholder="numbers"
                     />
