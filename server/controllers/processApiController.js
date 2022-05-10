@@ -48,8 +48,10 @@ const findProcessApi = async (req, res, next) => {
 const editProcessApi = async (req, res, next) => {
     try {
         const date = new Date();
+        console.log(date, '<-----date');
         const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
-        const updated_at = idnDate
+        console.log(idnDate, '<-----idndate');
+        const updated_at = date
         const instanceId = req.params.id
         const { org_id, merchant_id, client_id, client_secret, public_key, private_key, host_name, ip_address, service_name, service_code } = req.body;
 
