@@ -11,9 +11,9 @@ const { signToken, signClientToken, verifyClientToken } = require("../helpers/jw
 const userRegister = async (req, res, next) => {
     try {
         const date = new Date();
-        const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
-        const created_at = idnDate
-        const updated_at = idnDate
+        // const idnDate = date.toLocaleString("en-US", {timeZone: "Asia/Jakarta"});
+        const created_at = date
+        const updated_at = date
         const { email, password } = req.body;
 
         const newUser = await user.create({
