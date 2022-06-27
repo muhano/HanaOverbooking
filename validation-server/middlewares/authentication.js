@@ -29,7 +29,7 @@ const userAuthentication = async (req, res, next) => {
     //   client_id: clientData.client_id
     // };
 
-    console.log(req.user, '<-----');
+    // console.log(req.user, '<-----');
 
     const service_name = clientData.service_name;
     const serviceArray = service_name.split(", ");
